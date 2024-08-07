@@ -1,0 +1,502 @@
+
+
+Login1
+{
+    "config": {
+        "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+        ],
+        "data": "{\"dir_url\":\"http://201.216.239.83\",\"dir_puerto\":\"7846\",\"dir_api\":\"/homebanking/n_homebanking.asmx?WSDL\",\"metodo\":\"registrar_usuario\",\"data\":\"{\\\"empresa\\\": \\\"NEOPOSTMAN\\\", \\\"nro_persona\\\": 103, \\\"usuario\\\": \\\"MatiVolpe\\\",\\\"password\\\": \\\"111842\\\", \\\"id_telefono\\\": \\\"94E900C8-A816-4096-8D79-221C988641B6\\\"}\"}",
+        "env": {
+            "Blob": [Function Blob
+            ],
+            "FormData": [Function FormData
+            ]
+        },
+        "headers": [Object
+        ],
+        "maxBodyLength": -1,
+        "maxContentLength": -1,
+        "method": "post",
+        "timeout": 0,
+        "transformRequest": [
+            [Function transformRequest
+            ]
+        ],
+        "transformResponse": [
+            [Function transformResponse
+            ]
+        ],
+        "transitional": {
+            "clarifyTimeoutError": false,
+            "forcedJSONParsing": true,
+            "silentJSONParsing": true
+        },
+        "url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "validateStatus": [Function validateStatus
+        ],
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN"
+    },
+    "data": {
+        "data": {
+            "error": "",
+            "success": "TRUE"
+        }
+    },
+    "headers": {
+        "cache-control": "no-cache, private",
+        "content-encoding": "gzip",
+        "content-length": "56",
+        "content-type": "application/json",
+        "date": "Tue, 06 Aug 2024 19:05:22 GMT",
+        "server": "Apache",
+        "set-cookie": [Array
+        ],
+        "vary": "Accept-Encoding"
+    },
+    "request": {
+        "DONE": 4,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "OPENED": 1,
+        "UNSENT": 0,
+        "_aborted": false,
+        "_cachedResponse": undefined,
+        "_hasError": false,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json"
+        },
+        "_incrementalEvents": false,
+        "_lowerCaseResponseHeaders": {
+            "cache-control": "no-cache, private",
+            "content-encoding": "gzip",
+            "content-length": "56",
+            "content-type": "application/json",
+            "date": "Tue, 06 Aug 2024 19:05:22 GMT",
+            "server": "Apache",
+            "set-cookie": "XSRF-TOKEN=eyJpdiI6ImRUZzJVa2dKK3VRUk9yMlA4VXl1S1E9PSIsInZhbHVlIjoiM2trU2M4RmpZUHg3eUhYZURCTGh5cHRqQjB1K0VLUTBrWVpSY01IU1FlOVRSa0pNYksyRzYyUm1MMlYxTlJrUWdxNHMwQUlBMGF1QitEUjBFTWV1cGJZbkZ4RzgydU5FcDI4dGIyQXl5SitDd3hUbndLQ25tVjF0eklIaktvL0EiLCJtYWMiOiI1YmVmYTliZTIxYzNlNGU0MjQ2ZmJlYWNmN2RmM2FhY2I2Mzg4NmMyYTJmZjllOGZlN2E3ZDBmODhhOWEzMGRiIiwidGFnIjoiIn0%3D; expires=Tue, 06 Aug 2024 21:05:32 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6IkJQQVM3b2txQ2ZKcSttSkVkc3liRGc9PSIsInZhbHVlIjoid282RS83U0hjTGZETlkyMUxRR2tkQlAvVEQxMFFlbjFsMEZyZGx3MUpTdmJrQzh5Q21EM2tiN0ZrZkNubEJqZmE0b3hnNkN1dXJWZGVYb0poZlZIdC9MOVE0dlNHWkl4VjBHTW54aDRwbkpwNjlzSXVLM0JSQkxhZXlFbmE4eG0iLCJtYWMiOiJlODVmZjgyMjI4MWNiM2I5NTgwMjNmZWM2NmI5ZGE1OTRmNjI1OTA3ODY4YzUwOGIwOWQ4YTE5MmY3YjkxNjhjIiwidGFnIjoiIn0%3D; expires=Tue, 06 Aug 2024 21:05:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "vary": "Accept-Encoding"
+        },
+        "_method": "POST",
+        "_perfKey": "network_XMLHttpRequest_https://traductor.gruponeosistemas.com/n_hbconfig",
+        "_performanceLogger": {
+            "_closed": false,
+            "_extras": [Object
+            ],
+            "_pointExtras": [Object
+            ],
+            "_points": [Object
+            ],
+            "_timespans": [Object
+            ]
+        },
+        "_requestId": null,
+        "_response": "{\"data\":{\"success\":\"TRUE\",\"error\":\"\"}}",
+        "_responseType": "",
+        "_sent": true,
+        "_subscriptions": [],
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "readyState": 4,
+        "responseHeaders": {
+            "Cache-Control": "no-cache, private",
+            "Content-Encoding": "gzip",
+            "Content-Length": "56",
+            "Content-Type": "application/json",
+            "Date": "Tue, 06 Aug 2024 19:05:22 GMT",
+            "Server": "Apache",
+            "Set-Cookie": "XSRF-TOKEN=eyJpdiI6ImRUZzJVa2dKK3VRUk9yMlA4VXl1S1E9PSIsInZhbHVlIjoiM2trU2M4RmpZUHg3eUhYZURCTGh5cHRqQjB1K0VLUTBrWVpSY01IU1FlOVRSa0pNYksyRzYyUm1MMlYxTlJrUWdxNHMwQUlBMGF1QitEUjBFTWV1cGJZbkZ4RzgydU5FcDI4dGIyQXl5SitDd3hUbndLQ25tVjF0eklIaktvL0EiLCJtYWMiOiI1YmVmYTliZTIxYzNlNGU0MjQ2ZmJlYWNmN2RmM2FhY2I2Mzg4NmMyYTJmZjllOGZlN2E3ZDBmODhhOWEzMGRiIiwidGFnIjoiIn0%3D; expires=Tue, 06 Aug 2024 21:05:32 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6IkJQQVM3b2txQ2ZKcSttSkVkc3liRGc9PSIsInZhbHVlIjoid282RS83U0hjTGZETlkyMUxRR2tkQlAvVEQxMFFlbjFsMEZyZGx3MUpTdmJrQzh5Q21EM2tiN0ZrZkNubEJqZmE0b3hnNkN1dXJWZGVYb0poZlZIdC9MOVE0dlNHWkl4VjBHTW54aDRwbkpwNjlzSXVLM0JSQkxhZXlFbmE4eG0iLCJtYWMiOiJlODVmZjgyMjI4MWNiM2I5NTgwMjNmZWM2NmI5ZGE1OTRmNjI1OTA3ODY4YzUwOGIwOWQ4YTE5MmY3YjkxNjhjIiwidGFnIjoiIn0%3D; expires=Tue, 06 Aug 2024 21:05:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "Vary": "Accept-Encoding"
+        },
+        "responseURL": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "status": 200,
+        "timeout": 0,
+        "upload": {},
+        "withCredentials": true
+    },
+    "status": 200,
+    "statusText": undefined
+}
+
+
+Login 2: {
+    "data": {
+        "data": {
+            "activo": 1,
+            "admin": 0,
+            "apellido": "Volpe",
+            "beneficio": "",
+            "billetera": 1,
+            "bloqueado": 0,
+            "cantidad_mensajes": 2,
+            "codcategoria": 1,
+            "codigoente": 0,
+            "comercio": 0,
+            "comercio_vende_billetera": 0,
+            "cuenta_amv_comercio": 0,
+            "dtohaberes": 0,
+            "email": "mvolpe@gruponeosistemas.com",
+            "encontrado": 1,
+            "es_comercio": 0,
+            "es_socio": 1,
+            "id_telefono": "94E900C8-A816-4096-8D79-221C988641B6",
+            "last_login": "2024-08-06 16:53:29",
+            "nombre": "Matias",
+            "nombre_comercio": "",
+            "nombre_fantasia": "",
+            "nombreente": "Existe",
+            "nro_persona": 103,
+            "pass_ingreso": "961130",
+            "perfil_validado": 0,
+            "resetear": 1,
+            "socio": 101,
+            "telefono_celular": "3412115087",
+            "ultimo_cambio_clave": "1900-01-01 00:00:00",
+            "usr_ingreso": "MatiVolpe"
+        },
+        "error": "",
+        "success": "TRUE",
+        "token": "Wp4zVq5yUr6xTs7wSt8vR09=Q0.ZP1:YO2aXN3bWM4cVL5dUK6eTJ7fSI8gRH9hQ"
+    }
+}
+
+
+
+
+Cambiar contraseña: {
+    "config": {
+        "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+        ],
+        "data": "{\"dir_url\":\"http://201.216.239.83\",\"dir_puerto\":\"7846\",\"dir_api\":\"/homebanking/n_homebanking.asmx?WSDL\",\"metodo\":\"login_reingreso\",\"data\":\"{\\\"empresa\\\": \\\"NEOPOSTMAN\\\", \\\"nro_persona\\\": 103, \\\"usuario\\\": MatiVolpe, \\\"password\\\": 961130, \\\"cant_pass_controla\\\": '3'}\"}",
+        "env": {
+            "Blob": [Function Blob
+            ],
+            "FormData": [Function FormData
+            ]
+        },
+        "headers": [Object
+        ],
+        "maxBodyLength": -1,
+        "maxContentLength": -1,
+        "method": "post",
+        "timeout": 0,
+        "transformRequest": [
+            [Function transformRequest
+            ]
+        ],
+        "transformResponse": [
+            [Function transformResponse
+            ]
+        ],
+        "transitional": {
+            "clarifyTimeoutError": false,
+            "forcedJSONParsing": true,
+            "silentJSONParsing": true
+        },
+        "url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "validateStatus": [Function validateStatus
+        ],
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN"
+    },
+    "data": {
+        "data": {
+            "error": "Error de Fecha de Proceso",
+            "success": "FALSE"
+        }
+    },
+    "headers": {
+        "cache-control": "no-cache, private",
+        "content-encoding": "gzip",
+        "content-length": "77",
+        "content-type": "application/json",
+        "date": "Wed, 07 Aug 2024 12:26:42 GMT",
+        "server": "Apache",
+        "set-cookie": [Array
+        ],
+        "vary": "Accept-Encoding"
+    },
+    "request": {
+        "DONE": 4,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "OPENED": 1,
+        "UNSENT": 0,
+        "_aborted": false,
+        "_cachedResponse": undefined,
+        "_hasError": false,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json"
+        },
+        "_incrementalEvents": false,
+        "_lowerCaseResponseHeaders": {
+            "cache-control": "no-cache, private",
+            "content-encoding": "gzip",
+            "content-length": "77",
+            "content-type": "application/json",
+            "date": "Wed, 07 Aug 2024 12:26:42 GMT",
+            "server": "Apache",
+            "set-cookie": "XSRF-TOKEN=eyJpdiI6Inp2Ujl6cXk4RzB1OU9wNXZXVjBBWXc9PSIsInZhbHVlIjoiSVdZYndSN0lhYVdFM3hCdlJpSUNIWTRTVlNOL1JwNFJoOEJhbGJDSmwwVk1ScTdRNUVJUGpYY0E1aC83Z1pjZ3lxN1JJQkhESGdvc1lFcVZGQVlmSHRMS09JQnM5YTgyNUZzczFkaTlqTmJjTGFsclZFaVQrMjlkNmx5WGd0eWwiLCJtYWMiOiJlMzY1ZGQzZTVjMjgzMDkxMTg2NmUzMTQ4NDIxZjA1NmNmZjcxZTU0OTMzMzBlNzBjMThlMGI5OWZkYjhkNmU0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 14:26:44 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6IjFreDhJV2k2NGV1T1crSTBQTlVwZ1E9PSIsInZhbHVlIjoiN01Tb0dadXR0YmdhTUpKdk1OWjhKYXpQQmFBNDhIODhEbEpPR0IvUzV0U214UDRjeWU4Q1dlUGtUb1dxR29OaGFZSGloTExzTURaRFQ2SlVNNFJaL2RzNUlhd1MzSDI0b1BTLzkvYjhNSGZoRmVhK1lHaksrWlZ3d2p1bGo1aVIiLCJtYWMiOiIzZDAxZjQyZDMyZjU5YzE4M2M0YTA3NDA3MWE0MGQwNmI4ZjgwNWE5Yzk4MmQ2NGQwNmM0MWNiMDJmNTExMjJlIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 14:26:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "vary": "Accept-Encoding"
+        },
+        "_method": "POST",
+        "_perfKey": "network_XMLHttpRequest_https://traductor.gruponeosistemas.com/n_hbconfig",
+        "_performanceLogger": {
+            "_closed": false,
+            "_extras": [Object
+            ],
+            "_pointExtras": [Object
+            ],
+            "_points": [Object
+            ],
+            "_timespans": [Object
+            ]
+        },
+        "_requestId": null,
+        "_response": "{\"data\":{\"success\":\"FALSE\",\"error\":\"Error de Fecha de Proceso\"}}",
+        "_responseType": "",
+        "_sent": true,
+        "_subscriptions": [],
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "readyState": 4,
+        "responseHeaders": {
+            "Cache-Control": "no-cache, private",
+            "Content-Encoding": "gzip",
+            "Content-Length": "77",
+            "Content-Type": "application/json",
+            "Date": "Wed, 07 Aug 2024 12:26:42 GMT",
+            "Server": "Apache",
+            "Set-Cookie": "XSRF-TOKEN=eyJpdiI6Inp2Ujl6cXk4RzB1OU9wNXZXVjBBWXc9PSIsInZhbHVlIjoiSVdZYndSN0lhYVdFM3hCdlJpSUNIWTRTVlNOL1JwNFJoOEJhbGJDSmwwVk1ScTdRNUVJUGpYY0E1aC83Z1pjZ3lxN1JJQkhESGdvc1lFcVZGQVlmSHRMS09JQnM5YTgyNUZzczFkaTlqTmJjTGFsclZFaVQrMjlkNmx5WGd0eWwiLCJtYWMiOiJlMzY1ZGQzZTVjMjgzMDkxMTg2NmUzMTQ4NDIxZjA1NmNmZjcxZTU0OTMzMzBlNzBjMThlMGI5OWZkYjhkNmU0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 14:26:44 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6IjFreDhJV2k2NGV1T1crSTBQTlVwZ1E9PSIsInZhbHVlIjoiN01Tb0dadXR0YmdhTUpKdk1OWjhKYXpQQmFBNDhIODhEbEpPR0IvUzV0U214UDRjeWU4Q1dlUGtUb1dxR29OaGFZSGloTExzTURaRFQ2SlVNNFJaL2RzNUlhd1MzSDI0b1BTLzkvYjhNSGZoRmVhK1lHaksrWlZ3d2p1bGo1aVIiLCJtYWMiOiIzZDAxZjQyZDMyZjU5YzE4M2M0YTA3NDA3MWE0MGQwNmI4ZjgwNWE5Yzk4MmQ2NGQwNmM0MWNiMDJmNTExMjJlIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 14:26:44 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "Vary": "Accept-Encoding"
+        },
+        "responseURL": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "status": 200,
+        "timeout": 0,
+        "upload": {},
+        "withCredentials": true
+    },
+    "status": 200,
+    "statusText": undefined
+}
+
+
+Login 2 usuario erroneo: {
+    "config": {
+        "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+        ],
+        "data": "{\"dir_url\":\"http://201.216.239.83\",\"dir_puerto\":\"7846\",\"dir_api\":\"/homebanking/n_homebanking.asmx?WSDL\",\"metodo\":\"login_gral\",\"data\":\"{\\\"empresa\\\": \\\"NEOPOSTMAN\\\", \\\"usuario\\\": \\\"lgarciasc\\\", \\\"password\\\": \\\"421512521\\\", \\\"nro_adicional\\\": 0, \\\"origen\\\": 1}\"}",
+        "env": {
+            "Blob": [Function Blob
+            ],
+            "FormData": [Function FormData
+            ]
+        },
+        "headers": [Object
+        ],
+        "maxBodyLength": -1,
+        "maxContentLength": -1,
+        "method": "post",
+        "timeout": 0,
+        "transformRequest": [
+            [Function transformRequest
+            ]
+        ],
+        "transformResponse": [
+            [Function transformResponse
+            ]
+        ],
+        "transitional": {
+            "clarifyTimeoutError": false,
+            "forcedJSONParsing": true,
+            "silentJSONParsing": true
+        },
+        "url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "validateStatus": [Function validateStatus
+        ],
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN"
+    },
+    "data": {
+        "data": {
+            "data": [Object
+            ],
+            "error": "",
+            "success": "TRUE",
+            "token": "Rx9sQw.tPv:0O=a0NZb1MYc2LXd3KWe4JVf5IUg6HTh7GSi8FRj9EQk.DPl:COma"
+        }
+    },
+    "headers": {
+        "cache-control": "no-cache, private",
+        "content-encoding": "gzip",
+        "content-length": "420",
+        "content-type": "application/json",
+        "date": "Wed, 07 Aug 2024 13:18:56 GMT",
+        "server": "Apache",
+        "set-cookie": [Array
+        ],
+        "vary": "Accept-Encoding"
+    },
+    "request": {
+        "DONE": 4,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "OPENED": 1,
+        "UNSENT": 0,
+        "_aborted": false,
+        "_cachedResponse": undefined,
+        "_hasError": false,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json"
+        },
+        "_incrementalEvents": false,
+        "_lowerCaseResponseHeaders": {
+            "cache-control": "no-cache, private",
+            "content-encoding": "gzip",
+            "content-length": "420",
+            "content-type": "application/json",
+            "date": "Wed, 07 Aug 2024 13:18:56 GMT",
+            "server": "Apache",
+            "set-cookie": "XSRF-TOKEN=eyJpdiI6Im95akhDQ2sxdFJPR3ZjSnhoTElnaEE9PSIsInZhbHVlIjoiL1dLbHFWZ1REallqRzM2UWZ5bGZyRTZGa0piWjMzL3Z5ZHBOb1ROZmRIcGh1ejNaN1p1WVFySXd3ZkNpREwzL3d5STRnU2xKbTJXV1hkWnVDUjZlczA4VUJSU3pvaFBxY0ZId0JZeldORWZXYzE0QUVTT1RDL0J5QU8rVTFTVjUiLCJtYWMiOiI3ZTJkMWI5OGQ0NzQ1NmI4ZWYyZGE1YjNhNzQwNzc3YWZkNmJkYzVjNzc1NWRjNzI3YjA2NmI4YTljNjNjMjA0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 15:18:57 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6ImJyZzh5SzVDZWNtSWViSlRpaWJ2cUE9PSIsInZhbHVlIjoiejRoemZZcjgydEp4NlBSNUx5QlI2eWVZWFdlcGhjVDBDd2pKbmMrZ2ZpRWlwbjJqcEpPbHF3UCttd2EwYy9MV01pZ3p1NGl0WWhQdlQrN25JUGlrTTUxNHVqeHkybGxuRmpVZTdVdkM1YkRMU3hONTRUVHU1ZGpJdHpqb2IxMWEiLCJtYWMiOiI5YjEwNzI5ZjZjY2U1MTJiODRmZWE0YTE4MGIxMzllZWVmMzY3NTRkM2Q4ZmM1NzBhZWEzYTc0N2ExMWE5Y2QxIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 15:18:57 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "vary": "Accept-Encoding"
+        },
+        "_method": "POST",
+        "_perfKey": "network_XMLHttpRequest_https://traductor.gruponeosistemas.com/n_hbconfig",
+        "_performanceLogger": {
+            "_closed": false,
+            "_extras": [Object
+            ],
+            "_pointExtras": [Object
+            ],
+            "_points": [Object
+            ],
+            "_timespans": [Object
+            ]
+        },
+        "_requestId": null,
+        "_response": "{\"data\":{\"success\":\"TRUE\",\"token\":\"Rx9sQw.tPv:0O=a0NZb1MYc2LXd3KWe4JVf5IUg6HTh7GSi8FRj9EQk.DPl:COma\",\"data\":{\"encontrado\":0,\"activo\":0,\"bloqueado\":0,\"resetear\":0,\"socio\":0,\"last_login\":\"1900-01-01 00:00:00\",\"email\":\"\",\"apellido\":\"\",\"nombre\":\"\",\"es_socio\":0,\"es_comercio\":0,\"nombre_comercio\":\"\",\"dtohaberes\":0,\"codigoente\":0,\"beneficio\":\"\",\"nombreente\":\"Usuario: lgarciasc Pass: 421512521 Clave: 421512521\",\"nro_persona\":0,\"comercio\":0,\"codcategoria\":0,\"ultimo_cambio_clave\":\"1900-01-01 00:00:00\",\"billetera\":0,\"comercio_vende_billetera\":0,\"usr_ingreso\":\"\",\"pass_ingreso\":\"\",\"telefono_celular\":\"\",\"perfil_validado\":0,\"cantidad_mensajes\":0,\"cuenta_amv_comercio\":0,\"admin\":0,\"id_telefono\":\"\",\"nombre_fantasia\":\"\"},\"error\":\"\"}}",
+        "_responseType": "",
+        "_sent": true,
+        "_subscriptions": [],
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "readyState": 4,
+        "responseHeaders": {
+            "Cache-Control": "no-cache, private",
+            "Content-Encoding": "gzip",
+            "Content-Length": "420",
+            "Content-Type": "application/json",
+            "Date": "Wed, 07 Aug 2024 13:18:56 GMT",
+            "Server": "Apache",
+            "Set-Cookie": "XSRF-TOKEN=eyJpdiI6Im95akhDQ2sxdFJPR3ZjSnhoTElnaEE9PSIsInZhbHVlIjoiL1dLbHFWZ1REallqRzM2UWZ5bGZyRTZGa0piWjMzL3Z5ZHBOb1ROZmRIcGh1ejNaN1p1WVFySXd3ZkNpREwzL3d5STRnU2xKbTJXV1hkWnVDUjZlczA4VUJSU3pvaFBxY0ZId0JZeldORWZXYzE0QUVTT1RDL0J5QU8rVTFTVjUiLCJtYWMiOiI3ZTJkMWI5OGQ0NzQ1NmI4ZWYyZGE1YjNhNzQwNzc3YWZkNmJkYzVjNzc1NWRjNzI3YjA2NmI4YTljNjNjMjA0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 15:18:57 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6ImJyZzh5SzVDZWNtSWViSlRpaWJ2cUE9PSIsInZhbHVlIjoiejRoemZZcjgydEp4NlBSNUx5QlI2eWVZWFdlcGhjVDBDd2pKbmMrZ2ZpRWlwbjJqcEpPbHF3UCttd2EwYy9MV01pZ3p1NGl0WWhQdlQrN25JUGlrTTUxNHVqeHkybGxuRmpVZTdVdkM1YkRMU3hONTRUVHU1ZGpJdHpqb2IxMWEiLCJtYWMiOiI5YjEwNzI5ZjZjY2U1MTJiODRmZWE0YTE4MGIxMzllZWVmMzY3NTRkM2Q4ZmM1NzBhZWEzYTc0N2ExMWE5Y2QxIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 15:18:57 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+            "Vary": "Accept-Encoding"
+        },
+        "responseURL": "https://traductor.gruponeosistemas.com/n_hbconfig",
+        "status": 200,
+        "timeout": 0,
+        "upload": {},
+        "withCredentials": true
+    },
+    "status": 200,
+    "statusText": undefined
+}
+
+
+Login2 mativolpe erroneo: {
+    {
+        "data": {
+            "data": {
+                "activo": 0,
+                "admin": 0,
+                "apellido": "",
+                "beneficio": "",
+                "billetera": 0,
+                "bloqueado": 0,
+                "cantidad_mensajes": 0,
+                "codcategoria": 0,
+                "codigoente": 0,
+                "comercio": 0,
+                "comercio_vende_billetera": 0,
+                "cuenta_amv_comercio": 0,
+                "dtohaberes": 0,
+                "email": "",
+                "encontrado": 0,
+                "es_comercio": 0,
+                "es_socio": 0,
+                "id_telefono": "",
+                "last_login": "1900-01-01 00:00:00",
+                "nombre": "",
+                "nombre_comercio": "",
+                "nombre_fantasia": "",
+                "nombreente": "Usuario: MatiVolpe Pass: 1231421 Clave: 1231421",
+                "nro_persona": 0,
+                "pass_ingreso": "",
+                "perfil_validado": 0,
+                "resetear": 0,
+                "socio": 0,
+                "telefono_celular": "",
+                "ultimo_cambio_clave": "1900-01-01 00:00:00",
+                "usr_ingreso": ""
+            },
+            "error": "",
+            "success": "TRUE",
+            "token": "HihFGjiEFkjDElkCDmlBCnmABon@Apoz@qpyzrqxysrwxtsvw0t=v00Z=10YZ21X"
+        }
+    }
+
+
+    {
+        "data": {
+            "data": {
+                "activo": 1,
+                "admin": 0,
+                "apellido": "Volpe",
+                "beneficio": "",
+                "billetera": 1,
+                "bloqueado": 0,
+                "cantidad_mensajes": 2,
+                "codcategoria": 1,
+                "codigoente": 0,
+                "comercio": 0,
+                "comercio_vende_billetera": 0,
+                "cuenta_amv_comercio": 0,
+                "dtohaberes": 0,
+                "email": "mvolpe@gruponeosistemas.com",
+                "encontrado": 1,
+                "es_comercio": 0,
+                "es_socio": 1,
+                "id_telefono": "94E900C8-A816-4096-8D79-221C988641B6",
+                "last_login": "2024-08-07 09:22:24",
+                "nombre": "Matias",
+                "nombre_comercio": "",
+                "nombre_fantasia": "",
+                "nombreente": "Existe",
+                "nro_persona": 103,
+                "pass_ingreso": "961130",
+                "perfil_validado": 0,
+                "resetear": 1,
+                "socio": 101,
+                "telefono_celular": "3412115087",
+                "ultimo_cambio_clave": "1900-01-01 00:00:00",
+                "usr_ingreso": "MatiVolpe"
+            },
+            "error": "",
+            "success": "TRUE",
+            "token": "ZA1oY@2pXz3qWy4rVx5sUw6tTv70S=80RZ91QY.2PX:3OWa4NVb5MUc6LTd7KSe8"
+        }
+    }
