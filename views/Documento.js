@@ -17,6 +17,7 @@ const Documento = ({ navigation }) => {
   const [telefono, setTelefono] = useState('');
   const [codigoSeguridad, setCodigoSeguridad] = useState('');
   const [vistaSpinner, setVistaSpinner] = useState(false);
+  const [flagNavigate, setFlagNavigate] = useState(false);
 
   useEffect(() => {
     const setIds = async () => {
@@ -44,6 +45,7 @@ const Documento = ({ navigation }) => {
     const min = 100000;
     const max = 999999;
     const randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    setCodigoSeguridad(randNum);
     return randNum;
   };
 
@@ -76,11 +78,11 @@ const Documento = ({ navigation }) => {
         const telefonoValue = responseValidar.data.data.data.telefono_celular;
         const codigoGenerado = generarCodigo();
         setTelefono(telefonoValue);
-        setCodigoSeguridad(codigoGenerado);
+        // setCodigoSeguridad(generarCodigo());
         guardarDatos(respuesta, codigoGenerado);
         enviarMensaje(telefonoValue, codigoGenerado).then(() => {
           spinnerStop();
-          navigation.navigate('CodigoSMS', { urlSms, telefono, codigoGenerado });
+          setFlagNavigate(true);
         }).catch(() => {
           spinnerStop();
           console.error("No pudo enviarse el SMS");
@@ -94,6 +96,12 @@ const Documento = ({ navigation }) => {
       spinnerStop();
     }
   };
+
+  useEffect(() => {
+    if(flagNavigate && telefono && codigoSeguridad !== undefined){
+      navigation.navigate('CodigoSMS', { urlSms, telefono, codigoSeguridad });
+    }
+  }, [flagNavigate])
 
   const pressBtn = () => {
     Animated.spring(animacionboton, {

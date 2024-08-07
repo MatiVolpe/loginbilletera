@@ -26,6 +26,7 @@ const NombreUsuario = ({ navigation }) => {
     const [claveTemporal, setClaveTemporal] = useState('');
     const [idTelefono, setIdTelefono] = useState('');
     const [llamado, setLlamado] = useState(false);
+    
 
 
 
@@ -83,12 +84,13 @@ const NombreUsuario = ({ navigation }) => {
 
     const registroUsuario = async () => {
         const response = await axios.post(urlTraductor, {
-            'dir_url': 'https://201.216.239.83',
+            'dir_url': 'http://201.216.239.83',
             'dir_puerto': '7846',
             'dir_api': '/homebanking/n_homebanking.asmx?WSDL',
             'metodo': 'registrar_usuario',
             'data': `{"empresa": "NEOPOSTMAN", "nro_persona": ${nroPersona}, "usuario": "${usuario}","password": "${claveTemporal}", "id_telefono": "${idTelefono}"}`
         }).then((response) => {
+            console.log("Registrar usuario: ", response);
             return response.data.data.success === 'TRUE';
         }).catch((error) => {
             console.log("Error en registro de usuario..", error)
@@ -125,6 +127,7 @@ const NombreUsuario = ({ navigation }) => {
     }
 
     useEffect(() => {
+        spinnerStart();
         if (claveTemporal !== '') {
             console.log("validar:");
             const valido = validarUsuario();
@@ -139,6 +142,7 @@ const NombreUsuario = ({ navigation }) => {
                 }
             }
         }
+        spinnerStop();
     }, [claveTemporal])
 
     const generarCodigo = () => {

@@ -19,7 +19,13 @@ const CodigoSMS = ({ navigation, route }) => {
   const [prueba, setPrueba] = useState(false);
   const [disabledd, setDisabledd] = useState(false);
   
-  const { urlSms, telefono, codigoGenerado } = route.params;
+  const { urlSms, telefono, codigoSeguridad } = route.params;
+
+  useEffect(() => {
+    console.log(urlSms);
+    console.log(telefono);
+    console.log(codigoSeguridad);
+  })
 
   const pressBtn = () => {
     Animated.spring(animacionboton, {
@@ -88,10 +94,10 @@ const CodigoSMS = ({ navigation, route }) => {
     try {
       console.log(urlSms);
       console.log(telefono);
-      console.log(codigoGenerado);
+      console.log(codigoSeguridad);
       const responseMensaje = await axios.post(urlSms, {
         'numero_celular': `+54${telefono}`,
-        'mensaje': `Su código de verificación es ${codigoGenerado}. Este es un mensaje de la BILLETERA Mutual Central SC  `,
+        'mensaje': `Su código de verificación es ${codigoSeguridad}. Este es un mensaje de la BILLETERA Mutual Central SC  `,
         'categoria': 'MutualCentralSC',
         'tipo': 1,
       })

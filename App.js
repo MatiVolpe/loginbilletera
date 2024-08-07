@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { DefaultTheme, PaperProvider } from 'react-native-paper';
+import { DefaultTheme, PaperProvider, Button, Text } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Splash from './views/Splash';
@@ -134,31 +134,23 @@ const App = () => {
             name="CambiarContrasena"
             component={CambiarContrasena}
             options={{
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerBackTitle: 'Atrás',
-              headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
+              headerShown: false,
+              headerBackTitleVisible: false,
+              headerLeft: null
             }}
           />
           <Stack.Screen
             name="Finalizado"
             component={Finalizado}
-            options={{
+            options={({navigation}) => ({
               headerStyle: {
                 backgroundColor: '#ddede7'
               },
-              headerBackTitle: 'Atrás',
               headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
-            }}
+              headerBackTitleVisible: false,
+              headerLeft: null,
+              headerRight: () => <Button style={{borderRadius: 10, marginRight: 10}} buttonColor='#739488' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

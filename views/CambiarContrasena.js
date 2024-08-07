@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Animated, Alert } from 'react-native'
 import { Button, HelperText, Snackbar, Text, TextInput, Icon } from 'react-native-paper';
 import axios from 'axios';
-import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const CambiarContrasena = ({ navigation, route }) => {
 
@@ -27,6 +28,7 @@ const CambiarContrasena = ({ navigation, route }) => {
   const [flagEffect, setFlagEffect] = useState(false)
   const [mostrarContraseña, setMostrarContraseña] = useState(true);
   const [mostrarContraseña2, setMostrarContraseña2] = useState(true);
+  const [vistaSpinner, setVistaSpinner] = useState(false);
 
 
   useEffect(() => {
@@ -47,26 +49,19 @@ const CambiarContrasena = ({ navigation, route }) => {
       'dir_puerto': '7846',
       'dir_api': '/homebanking/n_homebanking.asmx?WSDL',
       'metodo': 'login_reingreso',
-      'data': `{"empresa": "NEOPOSTMAN", "nro_persona": ${nroPersona}, "usuario": ${usuario}, "password": ${contraseña}, "cant_pass_controla": 3}`
+      'data': '{"empresa": "NEOPOSTMAN", "nro_persona": "' + nroPersona + '", "usuario": "' + usuario + '", "password": "' + contraseña + '", "cant_pass_controla": 3}'
     }).then((response) => {
       console.log(response);
-      if(response.data.success === false ){
-        console.error("Hubo un error al consultar los datos");
+      if (response.data.data.success === 'FALSE') {
+        console.error("Error de fecha de proceso??");
       }
-      if (response.data.success === "TRUE") {
-        console.log(response.data.data.errorLongitud);
+      if (response.data.data.success === "TRUE") {
         setErrorLongitud(response.data.data.errorLongitud == 1);
-        console.log(response.data.data.errorEspeciales);
         setErrorEspeciales(response.data.data.errorEspeciales == 1);
-        console.log(response.data.data.errorMayusculas);
         setErrorMayusculas(response.data.data.errorMayusculas == 1);
-        console.log(response.data.data.errorNumeros);
         setErrorNumeros(response.data.data.errorNumeros == 1);
-        console.log(response.data.data.errorRepetidos);
         setErrorRepetidos(response.data.data.errorRepetidos == 1);
-        console.log(response.data.data.errorCorrelativos);
         setErrorCorrelativos(response.data.data.errorCorrelativos == 1);
-        console.log(response.data.data.errorPassRepetida);
         setErrorPassRepetida(response.data.data.errorPassRepetida == 1);
         setFlagEffect(true);
       }
@@ -76,17 +71,28 @@ const CambiarContrasena = ({ navigation, route }) => {
   }
 
 
-  const main = async () => {
+  const handleCambiar = async () => {
     const llamado = await cambiar();
   }
 
   useEffect(() => {
-    if(flagEffect){
-      if ( !errorLongitud && !errorEspeciales && !errorMayusculas && !errorNumeros && !errorRepetidos && !errorCorrelativos && !errorPassRepetida ) {
-        // navigation.navigate('Finalizado');
+    if (flagEffect) {
+      console.log(errorLongitud);
+      console.log(errorEspeciales);
+      console.log(errorMayusculas);
+      console.log(errorNumeros);
+      console.log(errorRepetidos);
+      console.log(errorCorrelativos);
+      console.log(errorPassRepetida);
+      if (!errorLongitud && !errorEspeciales && !errorMayusculas && !errorNumeros && !errorRepetidos && !errorCorrelativos && !errorPassRepetida) {
+        navigation.navigate('Finalizado');
+        spinnerStop();
       }
-       else {
+      else {
         snackHandlerError();
+        setContraseña("");
+        setContraseñaRepetir("");
+        spinnerStop();
       }
     }
   }, [flagEffect])
@@ -108,12 +114,13 @@ const CambiarContrasena = ({ navigation, route }) => {
 
 
   const handleInicio = () => {
+    spinnerStart();
     if (contraseña.trim() === "" || contraseñaRepetir.trim() === "") {
       snackHandler();
     } else if (contraseña !== contraseñaRepetir) {
       snackHandlerDistinto();
     } else {
-      main();
+      handleCambiar();
     }
   }
 
@@ -135,7 +142,7 @@ const CambiarContrasena = ({ navigation, route }) => {
     setMostrarSnackError(true);
     setTimeout(() => {
       setMostrarSnackError(false);
-    }, 2000);
+    }, 5000);
   };
 
 
@@ -165,8 +172,20 @@ const CambiarContrasena = ({ navigation, route }) => {
     transform: [{ scale: animacionboton }]
   }
 
+  const spinnerStart = () => {
+    setVistaSpinner(true);
+  };
+
+  const spinnerStop = () => {
+    setVistaSpinner(false);
+  };
+
   return (
-    <ScrollView style={styles.contenedor}>
+    <SafeAreaView style={styles.contenedor}>
+
+      <Spinner
+        visible={vistaSpinner}
+      />
 
       <View style={styles.vistaAclaracion}>
         <Text style={styles.textoAclaracionTitulo} variant='headlineSmall'>Elija su nueva clave para iniciar sesión, recuerde que la clave debe cumplir con los siguientes requisitos: </Text>
@@ -194,7 +213,7 @@ const CambiarContrasena = ({ navigation, route }) => {
               icon="eye"
               onPress={() => handleInputChange2()}
               iconSize={24}
-            />            
+            />
           }
           mode='outlined'
 
@@ -220,7 +239,7 @@ const CambiarContrasena = ({ navigation, route }) => {
               icon="eye"
               onPress={() => handleInputChange()}
               iconSize={24}
-            />            
+            />
           }
           mode='outlined'
 
@@ -260,10 +279,19 @@ const CambiarContrasena = ({ navigation, route }) => {
       </Snackbar>
       <Snackbar
         visible={mostrarSnackError}
+
       >
-        No se cumplen todas las condiciones.
+        <Text style={styles.textoSnack}>No se cumplen todas las condiciones para la contraseña:</Text>
+        {errorLongitud && <Text style={styles.textoSnack}>- Muy corta</Text>}
+        {errorEspeciales && <Text style={styles.textoSnack}>-No usar caracteres especiales</Text>}
+        {errorMayusculas && <Text style={styles.textoSnack}>-Debe tener minúsculas y mayúsculas</Text>}
+        {errorNumeros && <Text style={styles.textoSnack}>-Debe tener letras y números</Text>}
+        {errorRepetidos && <Text style={styles.textoSnack}>-No usar caracteres repetidos</Text>}
+        {errorCorrelativos && <Text style={styles.textoSnack}>-No repetir números</Text>}
+        {errorPassRepetida && <Text style={styles.textoSnack}>-No repetir las últimas 3 claves</Text>}
+
       </Snackbar>
-    </ScrollView>
+    </SafeAreaView>
   )
 }
 
@@ -274,6 +302,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddede7',
     padding: 20,
     paddingLeft: 30,
+  },
+  textoSnack: {
+    color: '#FFF',
+    fontSize: 16,
   },
   vistaTitulo: {
     width: '100%',

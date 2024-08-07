@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Animated, Image, Alert } from 'react-native'
+import { StyleSheet, View, Animated, Image, Alert, SectionList } from 'react-native'
 import { Button, HelperText, Snackbar, Text, TextInput } from 'react-native-paper';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -27,6 +27,8 @@ const Login = ({ navigation }) => {
   const [vistaSpinner, setVistaSpinner] = useState(false);
   const [mostrarContraseña, setMostrarContraseña] = useState(true);
 
+
+
   useEffect(() => {
     const setUrl = async () => {
       const url_login = await AsyncStorage.getItem('url_login');
@@ -35,10 +37,14 @@ const Login = ({ navigation }) => {
       setUrlLogin(url_login);
       setIdMutual(id_mutual);
       setUrlTraductor(url_traductor);
+      setUsuario("");
+      setContraseña("");
+      setSuccess('');
+      setEncontrado('');
+      setResetear('');
     }
     setUrl();
   }, [])
-
 
   const guardarDatos = async (urlDir, urlPuerto) => {
     try {
@@ -90,8 +96,9 @@ const Login = ({ navigation }) => {
 
 
   useEffect(() => {
-    console.log(resetear);
-    console.log(success);
+    console.log("Resetear: ", resetear);
+    console.log("Success :", success);
+    console.log("Encontrado: ", encontrado);
     if(success && encontrado === 0){
       Alert.alert(
         'Error de inicio de sesión',
@@ -110,7 +117,10 @@ const Login = ({ navigation }) => {
       guardarDatos(urlDir, urlPuerto);
       navigation.navigate('Finalizado', {usuario});
     }
-  }, [resetear, success])
+    if(!success){
+      console.log("No hay success");
+    }
+  }, [resetear, success, encontrado, navigation])
 
   const pressBtn = () => {
     Animated.spring(animacionboton, {

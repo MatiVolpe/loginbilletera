@@ -500,3 +500,132 @@ Login2 mativolpe erroneo: {
             "token": "ZA1oY@2pXz3qWy4rVx5sUw6tTv70S=80RZ91QY.2PX:3OWa4NVb5MUc6LTd7KSe8"
         }
     }
+
+    Cambio de contraseña: {
+        "config": {
+            "adapter": [
+                "xhr",
+                "http",
+                "fetch"
+            ],
+            "data": "{\"dir_url\":\"http://201.216.239.83\",\"dir_puerto\":\"7846\",\"dir_api\":\"/homebanking/n_homebanking.asmx?WSDL\",\"metodo\":\"login_reingreso\",\"data\":\"{\\\"empresa\\\": \\\"NEOPOSTMAN\\\", \\\"nro_persona\\\": \\\"\\\", \\\"usuario\\\": \\\"\\\", \\\"password\\\": \\\"Ma231997\\\", \\\"cant_pass_controla\\\": 3}\"}",
+            "env": {
+                "Blob": [Function Blob
+                ],
+                "FormData": [Function FormData
+                ]
+            },
+            "headers": [Object
+            ],
+            "maxBodyLength": -1,
+            "maxContentLength": -1,
+            "method": "post",
+            "timeout": 0,
+            "transformRequest": [
+                [Function transformRequest
+                ]
+            ],
+            "transformResponse": [
+                [Function transformResponse
+                ]
+            ],
+            "transitional": {
+                "clarifyTimeoutError": false,
+                "forcedJSONParsing": true,
+                "silentJSONParsing": true
+            },
+            "url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+            "validateStatus": [Function validateStatus
+            ],
+            "xsrfCookieName": "XSRF-TOKEN",
+            "xsrfHeaderName": "X-XSRF-TOKEN"
+        },
+        "data": {
+            "data": {
+                "error": "",
+                "errorCorrelativos": "0",
+                "errorEspeciales": "0",
+                "errorLongitud": "0",
+                "errorMayusculas": "0",
+                "errorNumeros": "0",
+                "errorPassRepetida": "0",
+                "errorRepetidos": "0",
+                "success": "TRUE"
+            }
+        },
+        "headers": {
+            "cache-control": "no-cache, private",
+            "content-encoding": "gzip",
+            "content-length": "124",
+            "content-type": "application/json",
+            "date": "Wed, 07 Aug 2024 19:12:48 GMT",
+            "server": "Apache",
+            "set-cookie": [Array
+            ],
+            "vary": "Accept-Encoding"
+        },
+        "request": {
+            "DONE": 4,
+            "HEADERS_RECEIVED": 2,
+            "LOADING": 3,
+            "OPENED": 1,
+            "UNSENT": 0,
+            "_aborted": false,
+            "_cachedResponse": undefined,
+            "_hasError": false,
+            "_headers": {
+                "accept": "application/json, text/plain, */*",
+                "content-type": "application/json"
+            },
+            "_incrementalEvents": false,
+            "_lowerCaseResponseHeaders": {
+                "cache-control": "no-cache, private",
+                "content-encoding": "gzip",
+                "content-length": "124",
+                "content-type": "application/json",
+                "date": "Wed, 07 Aug 2024 19:12:48 GMT",
+                "server": "Apache",
+                "set-cookie": "XSRF-TOKEN=eyJpdiI6IkNNbytsUlVHalpYeisvNUhpMmRkTHc9PSIsInZhbHVlIjoiUlB3dS9tMXJqQU5rWDNsYXpqbkpKTzZJSlhFSnc5R21DZUFpTGZlVFMwUzBnbzBkV3VzTVYyRmRBSlpMMHo4WjR3dXg0Uzd0OU5wb1BxSGpGUkVaOHhBdTdGdlNvcnpHc215dkFDV2RpR3dvMDdEb3VYakRxOGxsb3RkdStTaW0iLCJtYWMiOiIyYWUzM2VhNTM2MzI1YmEwNjliMWE0MWFmZWMyNTViYzQ1YTNiN2U3YmE2MGE1NDczN2U3NzIyNGJmY2U5MTk0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 21:12:49 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6ImFYWTZkYUpuVTZDNGVPMUlmdW5Ibnc9PSIsInZhbHVlIjoiVDJSdmxaZWhMbHFucEJVR1h1S0twb25uaXI4dWJ0VkhlSUtXaGhDWWFRbXVrUjVXNGlKMEJSVWRFQnhPZUZya0JJdGlac0RRQ25nbVk1N3MrcEhqbGxqSzczWjBkZlVoQ3NIbnBoM040RG9Pdld2N3M3OTFGbnlQMCs2UmVqdzciLCJtYWMiOiIxNDFlYjY2M2Y1MTZjNzZjODYwMjM5ZjgyYTQzNTM1MDhkNjYzZGU1ODYzZmJmZDJlZGI1NWZhZjU1ODVkNWEwIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 21:12:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+                "vary": "Accept-Encoding"
+            },
+            "_method": "POST",
+            "_perfKey": "network_XMLHttpRequest_https://traductor.gruponeosistemas.com/n_hbconfig",
+            "_performanceLogger": {
+                "_closed": false,
+                "_extras": [Object
+                ],
+                "_pointExtras": [Object
+                ],
+                "_points": [Object
+                ],
+                "_timespans": [Object
+                ]
+            },
+            "_requestId": null,
+            "_response": "{\"data\":{\"success\":\"TRUE\",\"error\":\"\",\"errorLongitud\":\"0\",\"errorEspeciales\":\"0\",\"errorMayusculas\":\"0\",\"errorNumeros\":\"0\",\"errorRepetidos\":\"0\",\"errorCorrelativos\":\"0\",\"errorPassRepetida\":\"0\"}}",
+            "_responseType": "",
+            "_sent": true,
+            "_subscriptions": [],
+            "_timedOut": false,
+            "_trackingName": "unknown",
+            "_url": "https://traductor.gruponeosistemas.com/n_hbconfig",
+            "readyState": 4,
+            "responseHeaders": {
+                "Cache-Control": "no-cache, private",
+                "Content-Encoding": "gzip",
+                "Content-Length": "124",
+                "Content-Type": "application/json",
+                "Date": "Wed, 07 Aug 2024 19:12:48 GMT",
+                "Server": "Apache",
+                "Set-Cookie": "XSRF-TOKEN=eyJpdiI6IkNNbytsUlVHalpYeisvNUhpMmRkTHc9PSIsInZhbHVlIjoiUlB3dS9tMXJqQU5rWDNsYXpqbkpKTzZJSlhFSnc5R21DZUFpTGZlVFMwUzBnbzBkV3VzTVYyRmRBSlpMMHo4WjR3dXg0Uzd0OU5wb1BxSGpGUkVaOHhBdTdGdlNvcnpHc215dkFDV2RpR3dvMDdEb3VYakRxOGxsb3RkdStTaW0iLCJtYWMiOiIyYWUzM2VhNTM2MzI1YmEwNjliMWE0MWFmZWMyNTViYzQ1YTNiN2U3YmE2MGE1NDczN2U3NzIyNGJmY2U5MTk0IiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 21:12:49 GMT; Max-Age=7200; path=/; secure; samesite=lax, laravel_session=eyJpdiI6ImFYWTZkYUpuVTZDNGVPMUlmdW5Ibnc9PSIsInZhbHVlIjoiVDJSdmxaZWhMbHFucEJVR1h1S0twb25uaXI4dWJ0VkhlSUtXaGhDWWFRbXVrUjVXNGlKMEJSVWRFQnhPZUZya0JJdGlac0RRQ25nbVk1N3MrcEhqbGxqSzczWjBkZlVoQ3NIbnBoM040RG9Pdld2N3M3OTFGbnlQMCs2UmVqdzciLCJtYWMiOiIxNDFlYjY2M2Y1MTZjNzZjODYwMjM5ZjgyYTQzNTM1MDhkNjYzZGU1ODYzZmJmZDJlZGI1NWZhZjU1ODVkNWEwIiwidGFnIjoiIn0%3D; expires=Wed, 07 Aug 2024 21:12:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax",
+                "Vary": "Accept-Encoding"
+            },
+            "responseURL": "https://traductor.gruponeosistemas.com/n_hbconfig",
+            "status": 200,
+            "timeout": 0,
+            "upload": {},
+            "withCredentials": true
+        },
+        "status": 200,
+        "statusText": undefined
+    }
