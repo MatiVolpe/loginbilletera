@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Animated, Pressable, StyleSheet, View } from 'react-native'
-import { Button, Text } from 'react-native-paper'
+import { Text } from 'react-native-paper'
 import axios from 'axios'
+import { Button } from 'native-base';
 
 
 const EmailTemporal = ({ navigation, route }) => {
@@ -104,10 +105,13 @@ const EmailTemporal = ({ navigation, route }) => {
           onPress={handleInicio}
           onPressIn={pressBtn}
           onPressOut={soltarBtn}
-          mode='elevated'
-          style={styles.boton}
+          variant="subtle"
+          size="sm"
+          style={[styles.boton, {height: 60}]}
+          bg="#b2d6bf"
+
         >
-          <Text style={styles.botonTexto}>Iniciar Sesión</Text>
+          <Text style={[styles.botonTexto, {height: 30}]}>ir a Iniciar Sesión</Text>
         </Button>
       </Animated.View>
 
@@ -134,7 +138,7 @@ const EmailTemporal = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#ddede7',
+    backgroundColor: '#e8e8d8',
     alignItems: 'center',
     padding: 20,
   },
@@ -152,17 +156,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   boton: {
-    marginVertical: 30,
+    marginVertical: 20,
     borderWidth: 1,
-    padding: 10,
     width: '100%',
-    borderRadius: 10,
+    borderRadius: 15,
+    borderColor: '#013d16',
   },
   botonTexto: {
-    marginVertical: 10,
+    height: 20,
+    marginVertical: 15,
     fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
+    paddingVertical: 5,
+    fontWeight: '600',
   },
 
 })

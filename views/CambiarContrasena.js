@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Animated, Alert } from 'react-native'
-import { Button, HelperText, Snackbar, Text, TextInput, Icon } from 'react-native-paper';
+import { HelperText, Snackbar, Text, TextInput, Icon } from 'react-native-paper';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Button } from 'native-base';
 
 const CambiarContrasena = ({ navigation, route }) => {
 
@@ -85,8 +86,8 @@ const CambiarContrasena = ({ navigation, route }) => {
       console.log(errorCorrelativos);
       console.log(errorPassRepetida);
       if (!errorLongitud && !errorEspeciales && !errorMayusculas && !errorNumeros && !errorRepetidos && !errorCorrelativos && !errorPassRepetida) {
-        navigation.navigate('Finalizado');
         spinnerStop();
+        navigation.navigate('Finalizado');
       }
       else {
         snackHandlerError();
@@ -117,8 +118,10 @@ const CambiarContrasena = ({ navigation, route }) => {
     spinnerStart();
     if (contraseña.trim() === "" || contraseñaRepetir.trim() === "") {
       snackHandler();
+      spinnerStop();
     } else if (contraseña !== contraseñaRepetir) {
       snackHandlerDistinto();
+      spinnerStop();
     } else {
       handleCambiar();
     }
@@ -201,7 +204,7 @@ const CambiarContrasena = ({ navigation, route }) => {
       <View style={styles.vista}>
         <Text style={styles.texto} variant='titleLarge'>Nueva contraseña</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {fontSize: 18}]}
           placeholder='1234'
           label={'Nueva contraseña'}
           value={contraseña}
@@ -227,7 +230,7 @@ const CambiarContrasena = ({ navigation, route }) => {
       <View style={styles.vistaAclaracion}>
         <Text style={styles.texto} variant='titleLarge'>Repetir nueva contraseña</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {fontSize: 18}]}
           placeholder='1234'
           label={'Repetir contraseña'}
           value={contraseñaRepetir}
@@ -253,8 +256,10 @@ const CambiarContrasena = ({ navigation, route }) => {
       <View style={styles.vistaAclaracion}>
         <Animated.View style={estiloAnimacionInicio}>
           <Button
-            mode='elevated'
+            variant="subtle"
+            size="sm"
             style={styles.boton}
+            bg="#b2d6bf"
             onPressIn={() => pressBtn()}
             onPressOut={() => soltarBtn()}
             onPress={() => handleInicio()}
@@ -299,7 +304,7 @@ const CambiarContrasena = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#ddede7',
+    backgroundColor: '#e8e8d8',
     padding: 20,
     paddingLeft: 30,
   },
@@ -328,7 +333,7 @@ const styles = StyleSheet.create({
 
   },
   texto: {
-    fontWeight: '700',
+    fontWeight: '600',
   },
   textoAclaracionTitulo: {
     fontWeight: '700',
@@ -345,17 +350,21 @@ const styles = StyleSheet.create({
     fontStyle: 'italic'
   },
   boton: {
-    marginBottom: 60,
+    marginVertical: 20,
     borderWidth: 1,
     width: '100%',
-    height: 70,
-    justifyContent: 'center',
+    borderRadius: 15,
+    borderColor: '#013d16',
+    height: 60
   },
   botonTexto: {
-    fontSize: 15,
+    height: 20,
+    marginVertical: 15,
+    fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
-    height: '100%',
+    paddingVertical: 5,
+    height: 20,
   },
   input: {
     paddingHorizontal: 10,

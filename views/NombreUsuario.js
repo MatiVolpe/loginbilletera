@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState, useRef } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
-import { Button, HelperText, Snackbar, Text, TextInput } from 'react-native-paper'
+import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper'
 import Spinner from 'react-native-loading-spinner-overlay';
 import axios from 'axios';
 import DeviceInfo from 'react-native-device-info';
+import { Button } from 'native-base';
 
 const NombreUsuario = ({ navigation }) => {
 
@@ -239,8 +240,10 @@ const NombreUsuario = ({ navigation }) => {
                     onPress={handleSiguiente}
                     onPressIn={pressBtn}
                     onPressOut={soltarBtn}
-                    mode='elevated'
+                    variant="subtle"
+                    size="sm"
                     style={styles.boton}
+                    bg="#b2d6bf"
                 >
                     <Text style={styles.botonTexto}>Siguiente</Text>
                 </Button>
@@ -263,7 +266,7 @@ const NombreUsuario = ({ navigation }) => {
 const styles = StyleSheet.create({
     contenedor: {
         flex: 1,
-        backgroundColor: '#ddede7',
+        backgroundColor: '#e8e8d8',
         alignItems: 'center',
         padding: 20,
     },
@@ -281,18 +284,22 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
     boton: {
-        marginVertical: 30,
+        marginVertical: 20,
         borderWidth: 1,
-        padding: 10,
         width: '100%',
-        borderRadius: 10,
-    },
-    botonTexto: {
-        marginVertical: 10,
+        borderRadius: 15,
+        borderColor: '#013d16',
+        height: 60
+      },
+      botonTexto: {
+        height: 30,
+        marginVertical: 15,
         fontSize: 20,
         textAlign: 'center',
         textTransform: 'uppercase',
-    },
+        paddingVertical: 5,
+        fontWeight: '500',
+      },
     input: {
         paddingHorizontal: 10,
         marginTop: 10,

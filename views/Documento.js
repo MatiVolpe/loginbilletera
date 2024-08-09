@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
-import { Button, HelperText, Text, TextInput, Snackbar } from 'react-native-paper';
+import { HelperText, Text, TextInput, Snackbar } from 'react-native-paper';
 import { Dropdown } from 'react-native-paper-dropdown';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Button } from 'native-base';
 
 const Documento = ({ navigation }) => {
   const [documento, setDocumento] = useState('');
@@ -98,7 +99,7 @@ const Documento = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if(flagNavigate && telefono && codigoSeguridad !== undefined){
+    if (flagNavigate && telefono && codigoSeguridad !== undefined) {
       navigation.navigate('CodigoSMS', { urlSms, telefono, codigoSeguridad });
     }
   }, [flagNavigate])
@@ -183,7 +184,7 @@ const Documento = ({ navigation }) => {
       <View style={styles.vista}>
         <Text style={styles.texto} variant='titleLarge'>Ingrese su {tipoDoc === "1" ? "documento" : "CUIT"}</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {fontSize: 18}]}
           placeholder=' Ej: 123456789'
           label={'Documento'}
           value={documento}
@@ -199,15 +200,19 @@ const Documento = ({ navigation }) => {
 
       <Animated.View style={estiloAnimacionInicio}>
         <Button
-          mode='elevated'
+          variant="subtle"
+          size="sm"
           style={styles.boton}
+          bg="#b2d6bf"
           onPressIn={() => pressBtn()}
           onPressOut={() => soltarBtn()}
           onPress={handleBotonSMS}
         >
-          <Text style={styles.botonTexto} variant='labelMedium'>
-            Enviar SMS
-          </Text>
+          <View style={styles.vistaTextoBoton}>
+            <Text style={styles.botonTexto} variant='labelMedium'>
+              Enviar SMS
+            </Text>
+          </View>
         </Button>
       </Animated.View>
       <View style={styles.vista}>
@@ -224,13 +229,18 @@ const Documento = ({ navigation }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#ddede7',
+    backgroundColor: '#e8e8d8',
     alignItems: 'center',
     padding: 20,
   },
   vista: {
     width: '90%',
   },
+  vistaTextoBoton: {
+    width: '100%',
+    paddingRight: 65,
+    
+  }, 
   titulo: {
     marginVertical: 40,
     fontWeight: '700',
@@ -238,20 +248,22 @@ const styles = StyleSheet.create({
   },
   texto: {
     marginTop: 10,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   boton: {
     marginVertical: 20,
     borderWidth: 1,
-    marginHorizontal: 10,
-    padding: 10,
-    width: '100%'
+    width: '100%',
+    borderRadius: 15,
+    borderColor: '#013d16',
   },
   botonTexto: {
-    marginVertical: 20,
-    fontSize: 15,
+    height: 20,
+    marginVertical: 15,
+    fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
+    paddingVertical: 5,
   },
   input: {
     paddingHorizontal: 10,

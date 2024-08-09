@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { StyleSheet, View, Animated, Image, Alert, SectionList } from 'react-native'
-import { Button, HelperText, Snackbar, Text, TextInput } from 'react-native-paper';
+import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Button } from 'native-base';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const Login = ({ navigation }) => {
@@ -37,14 +39,21 @@ const Login = ({ navigation }) => {
       setUrlLogin(url_login);
       setIdMutual(id_mutual);
       setUrlTraductor(url_traductor);
+
+    }
+    setUrl();
+  }, [])
+
+  useFocusEffect(
+    useCallback(() => {
       setUsuario("");
       setContraseña("");
       setSuccess('');
       setEncontrado('');
       setResetear('');
-    }
-    setUrl();
-  }, [])
+      console.log('usuario: ', usuario, 'contraseña: ', contraseña, 'nroPersona: ', nroPersona, 'success: ', success, 'resetear: ', resetear, 'encontrado :', encontrado);
+    }, [])
+  );
 
   const guardarDatos = async (urlDir, urlPuerto) => {
     try {
@@ -99,7 +108,7 @@ const Login = ({ navigation }) => {
     console.log("Resetear: ", resetear);
     console.log("Success :", success);
     console.log("Encontrado: ", encontrado);
-    if(success && encontrado === 0){
+    if (success && encontrado === 0) {
       Alert.alert(
         'Error de inicio de sesión',
         'No se encontró esa combinación de usuario y contraseña',
@@ -109,15 +118,15 @@ const Login = ({ navigation }) => {
       setUsuario('');
       setSuccess(false);
     }
-    if(resetear === 1 && success && encontrado === 1){
+    if (resetear === 1 && success && encontrado === 1) {
       guardarDatos(urlDir, urlPuerto);
       navigation.navigate('CambiarContrasena', { nroPersona, usuario, urlDir, urlPuerto });
     }
-    if(resetear === 0 && success && encontrado === 1){
+    if (resetear === 0 && success && encontrado === 1) {
       guardarDatos(urlDir, urlPuerto);
-      navigation.navigate('Finalizado', {usuario});
+      navigation.navigate('Finalizado', { usuario });
     }
-    if(!success){
+    if (!success) {
       console.log("No hay success");
     }
   }, [resetear, success, encontrado, navigation])
@@ -225,7 +234,7 @@ const Login = ({ navigation }) => {
       <View style={styles.vista}>
         <Text style={styles.texto} variant='titleLarge'>Nombre de usuario</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {fontSize: 18}]}
           placeholder='Nombre de usuario'
           label={'Usuario'}
           value={usuario}
@@ -241,7 +250,7 @@ const Login = ({ navigation }) => {
       <View style={styles.vista}>
         <Text style={styles.texto} variant='titleLarge'>Contraseña</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {fontSize: 18}]}
           placeholder='Contraseña'
           label={'Contraseña'}
           value={contraseña}
@@ -253,7 +262,7 @@ const Login = ({ navigation }) => {
               icon="eye"
               onPress={() => handleInputChange()}
               iconSize={24}
-            />            
+            />
           }
           mode='outlined'
         >
@@ -266,8 +275,10 @@ const Login = ({ navigation }) => {
       <View style={styles.vista}>
         <Animated.View style={estiloAnimacionInicio}>
           <Button
-            mode='elevated'
+            variant="subtle"
+            size="sm"
             style={styles.boton}
+            bg="#b2d6bf"
             onPressIn={() => pressBtn()}
             onPressOut={() => soltarBtn()}
             onPress={() => handleInicio()}
@@ -280,18 +291,22 @@ const Login = ({ navigation }) => {
       </View>
 
       <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleMedium'>¿No estás registrado?</Text>
+        <Text style={[styles.texto, {fontSize: 18}]} variant='titleMedium'>¿No estás registrado?</Text>
         <Animated.View style={estiloAnimacionRegistro}>
           <Button
-            mode='elevated'
+            variant="subtle"
+            size="sm"
             style={styles.boton}
+            bg="#b2d6bf"
             onPressIn={() => pressBtnReg()}
             onPressOut={() => soltarBtnReg()}
             onPress={() => handleRegistro()}
           >
-            <Text style={styles.botonTexto} variant='labelMedium'>
-              Registrarse
-            </Text>
+            <View style={styles.vistaTextoBoton}>
+              <Text style={styles.botonTexto} variant='labelMedium'>
+                Registrarse
+              </Text>
+            </View>
           </Button>
         </Animated.View>
       </View>
@@ -307,7 +322,7 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#ddede7',
+    backgroundColor: '#e8e8d8',
     alignItems: 'center',
     padding: 20,
   },
@@ -319,6 +334,9 @@ const styles = StyleSheet.create({
   vista: {
     width: '90%',
   },
+  vistaTextoBoton: {
+    width: '100%',
+  },
   titulo: {
     marginVertical: 40,
     fontWeight: '700',
@@ -326,22 +344,22 @@ const styles = StyleSheet.create({
 
   },
   texto: {
-
-    fontWeight: '700',
+    fontWeight: '500',
   },
   boton: {
     marginVertical: 20,
     borderWidth: 1,
-    marginHorizontal: 10,
-    padding: 10,
-    width: '100%'
+    width: '100%',
+    borderRadius: 15,
+    borderColor: '#013d16',
   },
   botonTexto: {
-    marginVertical: 20,
-    fontSize: 15,
+    height: 20,
+    marginVertical: 15,
+    fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
-
+    paddingVertical: 5,
   },
   input: {
     paddingHorizontal: 10,

@@ -1,28 +1,21 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Image} from 'react-native'
 import { Text } from 'react-native-paper';
-import axios from 'axios';
-import Spinner from 'react-native-loading-spinner-overlay';
+
 
 const Finalizado = (navigation) => {
 
   return (
     <View style={styles.contenedor}>
-
       <View style={styles.vistaTitulo}>
         <Image
           source={require('../logoLogin.png')}
           style={styles.imagen}
         />
       </View>
-
-
       <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Bienvenido a Cash Mutual</Text>
-
+        <Text style={styles.texto} variant='titleLarge'>Bienvenido a Cash Mutual ..</Text>
       </View>
-
     </View>
   )
 }
@@ -30,7 +23,7 @@ const Finalizado = (navigation) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#ddede7',
+    backgroundColor: '#e8e8d8',
     alignItems: 'center',
     padding: 20,
   },
@@ -55,16 +48,17 @@ const styles = StyleSheet.create({
   boton: {
     marginVertical: 20,
     borderWidth: 1,
-    marginHorizontal: 10,
-    padding: 10,
-    width: '100%'
+    width: '100%',
+    borderRadius: 15,
+    borderColor: '#013d16',
   },
   botonTexto: {
-    marginVertical: 20,
-    fontSize: 15,
+    height: 20,
+    marginVertical: 15,
+    fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
-
+    paddingVertical: 5,
   },
   input: {
     paddingHorizontal: 10,

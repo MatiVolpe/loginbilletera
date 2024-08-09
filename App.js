@@ -1,9 +1,12 @@
 import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { DefaultTheme, PaperProvider, Button, Text } from 'react-native-paper';
+import { DefaultTheme, PaperProvider, Text } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeBaseProvider } from 'native-base';
+import { Button } from 'native-base';
 import Splash from './views/Splash';
 import Login from './views/Login';
 import Documento from './views/Documento';
@@ -12,7 +15,8 @@ import NombreUsuario from './views/NombreUsuario';
 import EmailTemporal from './views/EmailTemporal';
 import CambiarContrasena from './views/CambiarContrasena';
 import Finalizado from './views/Finalizado';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Footer from './components/Footer';
+
 
 
 const Stack = createStackNavigator();
@@ -25,6 +29,15 @@ const theme = {
     accent: '#0655BF',
   }
 }
+
+const withFooter = (Component) => {
+  return (props) => (
+    <>
+      <Component {...props} />
+      <Footer />
+    </>
+  );
+};
 
 
 const App = () => {
@@ -48,113 +61,117 @@ const App = () => {
   }, [])
 
   return (
-    <PaperProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Splash"
+    <NativeBaseProvider>
 
-        >
-          <Stack.Screen
-            name="Splash"
-            component={Splash}
-            options={{
-              headerShown: false
-            }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{
-              headerShown: false,
-              headerBackTitleVisible: false,
-              headerLeft: null
-            }}
-          />
-          <Stack.Screen
-            name="Documento"
-            component={Documento}
-            options={{
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerBackTitle: 'Atrás',
-              headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
-            }}
-          />
-          <Stack.Screen
-            name="CodigoSMS"
-            component={CodigoSMS}
-            options={{
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerBackTitle: 'Atrás',
-              headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
-            }}
-          />
-          <Stack.Screen
-            name="NombreUsuario"
-            component={NombreUsuario}
-            options={{
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerBackTitle: 'Atrás',
-              headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
-            }}
-          />
-          <Stack.Screen
-            name="EmailTemporal"
-            component={EmailTemporal}
-            options={{
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerBackTitle: 'Atrás',
-              headerTitle: '',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 24
-              }
-            }}
-          />
-          <Stack.Screen
-            name="CambiarContrasena"
-            component={CambiarContrasena}
-            options={{
-              headerShown: false,
-              headerBackTitleVisible: false,
-              headerLeft: null
-            }}
-          />
-          <Stack.Screen
-            name="Finalizado"
-            component={Finalizado}
-            options={({navigation}) => ({
-              headerStyle: {
-                backgroundColor: '#ddede7'
-              },
-              headerTitle: '',
-              headerBackTitleVisible: false,
-              headerLeft: null,
-              headerRight: () => <Button style={{borderRadius: 10, marginRight: 10}} buttonColor='#739488' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
-            })}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
+      <PaperProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Splash"
+          >
+            <Stack.Screen
+              name="Splash"
+              component={Splash}
+              options={{
+                headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                headerShown: false,
+                headerBackTitleVisible: false,
+                headerLeft: null
+              }}
+            />
+            <Stack.Screen
+              name="Documento"
+              component={withFooter(Documento)}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerBackTitle: 'Volver',
+                headerTitle: '',
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: '#013d16',
+                },
+                headerTintColor: '#013d16'
+              }}
+            />
+            <Stack.Screen
+              name="CodigoSMS"
+              component={withFooter(CodigoSMS)}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerBackTitle: 'Atrás',
+                headerTitle: '',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 24
+                }
+              }}
+            />
+            <Stack.Screen
+              name="NombreUsuario"
+              component={withFooter(NombreUsuario)}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerBackTitle: 'Atrás',
+                headerTitle: '',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 24
+                }
+              }}
+            />
+            <Stack.Screen
+              name="EmailTemporal"
+              component={withFooter(EmailTemporal)}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerBackTitle: 'Atrás',
+                headerTitle: '',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                  fontSize: 24
+                }
+              }}
+            />
+            <Stack.Screen
+              name="CambiarContrasena"
+              component={withFooter(CambiarContrasena)}
+              options={{
+                headerShown: false,
+                headerBackTitleVisible: false,
+                headerLeft: null
+              }}
+            />
+            <Stack.Screen
+              name="Finalizado"
+              component={withFooter(Finalizado)}
+              options={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerTitle: '',
+                headerBackTitleVisible: false,
+                headerLeft: null,
+                headerRight: () => <Button style={{ borderRadius: 10, marginRight: 10 }} buttonColor='#b2d6bf' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
+              })}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </NativeBaseProvider>
+
   );
 }
 
