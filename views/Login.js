@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useState } from 'react'
-import { StyleSheet, View, Animated, Image, Alert, SectionList } from 'react-native'
+import { StyleSheet, View, Animated, Image, Alert, SectionList, Pressable } from 'react-native'
 import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -218,6 +218,10 @@ const Login = ({ navigation }) => {
     setMostrarContraseña(!mostrarContraseña);
   }
 
+  const handleContraOlvidada = () => {
+    navigation.navigate("Olvidada");
+  }
+
   return (
     <View style={styles.contenedor}>
       <Spinner
@@ -234,7 +238,7 @@ const Login = ({ navigation }) => {
       <View style={styles.vista}>
         <Text style={styles.texto} variant='titleLarge'>Nombre de usuario</Text>
         <TextInput
-          style={[styles.input, {fontSize: 18}]}
+          style={[styles.input, { fontSize: 18 }]}
           placeholder='Nombre de usuario'
           label={'Usuario'}
           value={usuario}
@@ -247,10 +251,10 @@ const Login = ({ navigation }) => {
         </HelperText>
       </View>
 
-      <View style={styles.vista}>
+      <View style={[styles.vista, {marginBottom: 0}]}>
         <Text style={styles.texto} variant='titleLarge'>Contraseña</Text>
         <TextInput
-          style={[styles.input, {fontSize: 18}]}
+          style={[styles.input, { fontSize: 18 }]}
           placeholder='Contraseña'
           label={'Contraseña'}
           value={contraseña}
@@ -267,18 +271,23 @@ const Login = ({ navigation }) => {
           mode='outlined'
         >
         </TextInput>
+        <Pressable
+          onPress={handleContraOlvidada}
+          style={{marginVertical: 10}}
+        >
+          <Text style={[styles.texto, { fontSize: 15, color: '#2f246e', textAlign:'right' }]} variant='titleMedium'>¿Olvidaste tu contraseña?</Text>
+        </Pressable>
         <HelperText type="error" visible={errorContra}>
           Este campo es obligatorio
         </HelperText>
       </View>
-
       <View style={styles.vista}>
         <Animated.View style={estiloAnimacionInicio}>
           <Button
             variant="subtle"
             size="sm"
-            style={styles.boton}
-            bg="#b2d6bf"
+            style={[styles.boton, {marginTop: 0}]}
+            bg="#72ad8c"
             onPressIn={() => pressBtn()}
             onPressOut={() => soltarBtn()}
             onPress={() => handleInicio()}
@@ -291,13 +300,13 @@ const Login = ({ navigation }) => {
       </View>
 
       <View style={styles.vista}>
-        <Text style={[styles.texto, {fontSize: 18}]} variant='titleMedium'>¿No estás registrado?</Text>
+        <Text style={[styles.texto, { fontSize: 18 }]} variant='titleMedium'>¿No estás registrado?</Text>
         <Animated.View style={estiloAnimacionRegistro}>
           <Button
             variant="subtle"
             size="sm"
             style={styles.boton}
-            bg="#b2d6bf"
+            bg="#72ad8c"
             onPressIn={() => pressBtnReg()}
             onPressOut={() => soltarBtnReg()}
             onPress={() => handleRegistro()}
@@ -313,7 +322,7 @@ const Login = ({ navigation }) => {
       <Snackbar
         visible={mostrarSnack}
       >
-        No puede haber campos vacios.
+        <Text style={{fontSize: 16, color:'white'}}>No puede haber campos vacios.</Text>
       </Snackbar>
     </View>
   )
@@ -333,6 +342,9 @@ const styles = StyleSheet.create({
   },
   vista: {
     width: '90%',
+  },
+  vistaOlvidada: {
+    paddingVertical: 40,
   },
   vistaTextoBoton: {
     width: '100%',

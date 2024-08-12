@@ -94,6 +94,7 @@ const CambiarContrasena = ({ navigation, route }) => {
         setContraseña("");
         setContraseñaRepetir("");
         spinnerStop();
+        setFlagEffect(false);
       }
     }
   }, [flagEffect])
@@ -191,7 +192,8 @@ const CambiarContrasena = ({ navigation, route }) => {
       />
 
       <View style={styles.vistaAclaracion}>
-        <Text style={styles.textoAclaracionTitulo} variant='headlineSmall'>Elija su nueva clave para iniciar sesión, recuerde que la clave debe cumplir con los siguientes requisitos: </Text>
+        <Text style={[styles.textoAclaracionTitulo, {textAlign: 'center', textDecorationLine: 'underline'}]} variant='headlineSmall'>Elija su nueva clave </Text>
+        <Text style={styles.textoAclaracionTitulo} variant='titleLarge'>Recuerde que la clave debe cumplir con los siguientes requisitos: </Text>
         <Text style={styles.textoAclaracion} variant='titleMedium'>- Debe contener al menos 8 caracteres </Text>
         <Text style={styles.textoAclaracion} variant='titleMedium'>- No contener caracteres especiales </Text>
         <Text style={styles.textoAclaracion} variant='titleMedium'>- Contener Mayúsculas y Minúsculas </Text>
@@ -259,7 +261,7 @@ const CambiarContrasena = ({ navigation, route }) => {
             variant="subtle"
             size="sm"
             style={styles.boton}
-            bg="#b2d6bf"
+            bg="#72ad8c"
             onPressIn={() => pressBtn()}
             onPressOut={() => soltarBtn()}
             onPress={() => handleInicio()}
@@ -274,17 +276,19 @@ const CambiarContrasena = ({ navigation, route }) => {
 
       <Snackbar
         visible={mostrarSnack}
+        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
       >
-        No puede haber campos vacios.
+        <Text style={styles.textoSnack}>No puede haber campos vacios.</Text>
       </Snackbar>
       <Snackbar
         visible={mostrarSnackDistinto}
+        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
       >
-        Las contraseñas no coinciden.
+        <Text style={styles.textoSnack}>Las contraseñas no coinciden.</Text>
       </Snackbar>
       <Snackbar
         visible={mostrarSnackError}
-
+        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
       >
         <Text style={styles.textoSnack}>No se cumplen todas las condiciones para la contraseña:</Text>
         {errorLongitud && <Text style={styles.textoSnack}>- Muy corta</Text>}
@@ -309,7 +313,7 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
   },
   textoSnack: {
-    color: '#FFF',
+    color: 'white',
     fontSize: 16,
   },
   vistaTitulo: {
@@ -320,7 +324,7 @@ const styles = StyleSheet.create({
   vista: {
     width: '90%',
     marginBottom: 10,
-    marginVertical: 20,
+    marginVertical: 0,
   },
   vistaAclaracion: {
     width: '90%',

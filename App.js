@@ -16,6 +16,7 @@ import EmailTemporal from './views/EmailTemporal';
 import CambiarContrasena from './views/CambiarContrasena';
 import Finalizado from './views/Finalizado';
 import Footer from './components/Footer';
+import Olvidada from './views/Olvidada';
 
 
 
@@ -164,8 +165,24 @@ const App = () => {
                 headerTitle: '',
                 headerBackTitleVisible: false,
                 headerLeft: null,
-                headerRight: () => <Button style={{ borderRadius: 10, marginRight: 10 }} buttonColor='#b2d6bf' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
+                headerRight: () => <Button style={{ borderRadius: 10, marginRight: 10 }} buttonColor='#72ad8c' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
               })}
+            />
+            <Stack.Screen
+              name="Olvidada"
+              component={withFooter(Olvidada)}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#e8e8d8'
+                },
+                headerBackTitle: 'Volver',
+                headerTitle: '',
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: '#013d16',
+                },
+                headerTintColor: '#013d16'
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

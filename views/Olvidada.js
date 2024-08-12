@@ -7,7 +7,7 @@ import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Button } from 'native-base';
 
-const Documento = ({ navigation }) => {
+const Olvidada = ({ navigation }) => {
   const [documento, setDocumento] = useState('');
   const [errorDocumento, setErrorDocumento] = useState(false);
   const [animacionboton] = useState(new Animated.Value(1));
@@ -162,7 +162,7 @@ const Documento = ({ navigation }) => {
       />
 
       <View>
-        <Text variant='headlineLarge' style={styles.titulo}>Registro de usuario</Text>
+        <Text variant='headlineLarge' style={styles.titulo}>Reestablecer contraseña</Text>
       </View>
 
       <View style={styles.vista}>
@@ -217,7 +217,7 @@ const Documento = ({ navigation }) => {
       </Animated.View>
       <View style={styles.vista}>
         <Snackbar
-          visible={mostrarSnack}
+            visible={mostrarSnack}
         >
           No puede haber campos vacios.
         </Snackbar>
@@ -276,4 +276,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Documento;
+export default Olvidada;

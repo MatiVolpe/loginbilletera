@@ -97,7 +97,7 @@ const EmailTemporal = ({ navigation, route }) => {
         <View>
           <Text variant='headlineSmall' style={[styles.titulo, style = { color: '#663399' }]}>{usuario}</Text>
         </View>
-        <Text variant='headlineSmall' style={styles.texto}>Te enviamos tu clave provisoria para iniciar sesion a tu casilla de correo</Text>
+        <Text variant='headlineSmall' style={styles.texto}>Te enviamos tu clave provisoria para iniciar sesion a tu correo</Text>
       </View>
 
       <Animated.View style={[styles.vista, estiloAnimacionInicio]}>
@@ -108,7 +108,7 @@ const EmailTemporal = ({ navigation, route }) => {
           variant="subtle"
           size="sm"
           style={[styles.boton, {height: 60}]}
-          bg="#b2d6bf"
+          bg="#72ad8c"
 
         >
           <Text style={[styles.botonTexto, {height: 30}]}>ir a Iniciar Sesión</Text>

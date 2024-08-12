@@ -157,6 +157,7 @@ const NombreUsuario = ({ navigation }) => {
         spinnerStart();
         if (usuario.trim().length < 8) {
             snackHandlerLongitud();
+            spinnerStop();
         } else {
             setClaveTemporal(generarCodigo());
         }
@@ -243,7 +244,7 @@ const NombreUsuario = ({ navigation }) => {
                     variant="subtle"
                     size="sm"
                     style={styles.boton}
-                    bg="#b2d6bf"
+                    bg="#72ad8c"
                 >
                     <Text style={styles.botonTexto}>Siguiente</Text>
                 </Button>
@@ -251,11 +252,13 @@ const NombreUsuario = ({ navigation }) => {
 
             <Snackbar
                 visible={mostrarSnackLongitud}
+                style={{zIndex: 999, bottom: 120, marginLeft: 35}}
             >
-                El nombre de usuario debe tener al menos 8 caracteres.
+                <Text style={{fontSize: 16, color: 'white'}}>El nombre de usuario debe tener al menos 8 caracteres.</Text>
             </Snackbar>
             <Snackbar
                 visible={mostrarSnackExistente}
+                style={{zIndex: 999, bottom: 120, marginLeft: 35}}
             >
                 El nombre de usuario ya existe.
             </Snackbar>
