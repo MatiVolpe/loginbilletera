@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState, useRef } from 'react'
-import { Animated, StyleSheet, View } from 'react-native'
-import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper'
+import { Animated, ImageBackground, StyleSheet, View } from 'react-native'
+import { HelperText, Snackbar, Text, TextInput, Button } from 'react-native-paper'
 import CountDownTimer from 'react-native-countdown-timer-hooks';
 import axios from 'axios';
-import { Button } from 'native-base';
 
 
 const CodigoSMS = ({ navigation, route }) => {
@@ -14,7 +13,6 @@ const CodigoSMS = ({ navigation, route }) => {
   const [codigoComparar, setCodigoComparar] = useState('');
   const [animacionboton] = useState(new Animated.Value(1));
   const [animacionboton2] = useState(new Animated.Value(1));
-  const [mostrarSnackCorrecto, setMostrarSnackCorrecto] = useState(false);
   const [mostrarSnackErroneo, setMostrarSnackErroneo] = useState(false);
   const [sinTiempo, setSinTiempo] = useState(false);
   const [prueba, setPrueba] = useState(false);
@@ -75,13 +73,7 @@ const CodigoSMS = ({ navigation, route }) => {
 
   const handleClick = () => {
     if (codigo === codigoComparar) {
-      setMostrarSnackCorrecto(true);
-      setTimeout(() => {
-        setMostrarSnackCorrecto(false);
-      }, 2000);
-      setTimeout(() => {
-        navigation.navigate('NombreUsuario')
-      }, 2000);
+      navigation.navigate('NombreUsuario')
     } else {
       setMostrarSnackErroneo(true);
       setTimeout(() => {
@@ -138,107 +130,100 @@ const CodigoSMS = ({ navigation, route }) => {
 
   return (
     <View style={styles.contenedor}>
-
-      <View>
-        <Text variant='headlineMedium' style={styles.titulo}>Te enviamos un código por SMS</Text>
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
         <View>
-          <Text variant='headlineSmall' style={styles.texto}>Introducir código: </Text>
-        </View>
-      </View>
-      <View style={styles.vista}>
-        <TextInput
-          style={[styles.input, { fontSize: 18 }]}
-          placeholder=''
-          label={'Código'}
-          value={codigo}
-          onChangeText={(texto) => setCodigo(texto)}
-          // onBlur={handleErrorDocumento}
-          mode='outlined'
-        />
-        <HelperText type="error" visible={false}>
-          Este campo es obligatorio
-        </HelperText>
+          <Text variant='headlineMedium' style={styles.titulo}>Te enviamos un código por SMS</Text>
 
-      </View>
-      <Animated.View style={[styles.vista, estiloAnimacionInicio2]}>
-        <Button
-          onPress={handleClick}
-          variant="subtle"
-          size="sm"
-          style={[styles.boton, { height: 70 }]}
-          bg="#72ad8c"
-          onPressIn={pressBtn2}
-          onPressOut={soltarBtn2}
-          disabled={!prueba}
-        >
-          <View>
-            <Text style={[styles.botonTexto, { height: 35 }]}>confirmar</Text>
-          </View>
-        </Button>
-      </Animated.View>
-
-      <View style={[styles.vista, { alignItems: 'center', paddingLeft: 10 }]}>
-        <View style={{ alignItems: 'center', paddingRight: 20, justifyContent: 'center' }}>
-          <Text style={{ marginBottom: 5, fontSize: 20, fontWeight: '500' }}>¿No recibiste el mensaje?</Text>
-          <Animated.View style={[estiloAnimacionInicio]}>
-            <Button
-              variant="subtle"
-              size="sm"
-              style={[styles.boto, { height: 40 }]}
-              bg="#72ad8c"
-              onPressIn={pressBtn}
-              onPressOut={soltarBtn}
-              onPress={enviarDeNuevo}
-              disabled={disabledd}
-            >
-              <View>
-                <Text style={{ fontSize: 18 }}>Volver a enviar</Text>
-              </View>
-            </Button>
-          </Animated.View>
         </View>
-        <View style={[styles.countdownView, { display: !prueba ? "none" : "flex" }]}>
-          <CountDownTimer
-            ref={refTimer}
-            timestamp={90}
-            timerCallback={timerCallbackFunc}
-            timerOnProgress={timerOnProgressFunc}
-            containerStyle={{
-              height: 50,
-              width: 120,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 10,
-              backgroundColor: '#FFF'
-            }}
-            textStyle={{
-              fontSize: 25,
-              color: '#663399',
-              fontWeight: '500',
-              letterSpacing: 0.25,
-            }}
+        <View style={styles.vista}>
+          <TextInput
+            style={[styles.input, { fontSize: 18 }]}
+            placeholder=''
+            label={'Código'}
+            value={codigo}
+            outlineColor='#219EBC'
+            activeOutlineColor='#023047'
+            onChangeText={(texto) => setCodigo(texto)}
+            mode='outlined'
           />
-        </View>
-      </View>
+          <HelperText type="error" visible={false}>
+            Este campo es obligatorio
+          </HelperText>
 
-      <Snackbar
-        visible={mostrarSnackCorrecto}
-        style={{ zIndex: 999, bottom: 120, marginLeft: 35 }}
-      >
-        Código correcto.
-      </Snackbar>
-      <Snackbar
-        visible={mostrarSnackErroneo}
-        style={{ zIndex: 999, bottom: 120, marginLeft: 35 }}
-      >
-        El código no coincide.
-      </Snackbar>
-      <Snackbar
-        visible={sinTiempo}
-        style={{ zIndex: 999, bottom: 120, marginLeft: 35 }}
-      >
-        Se terminó el tiempo.
-      </Snackbar>
+        </View>
+        <Animated.View style={[styles.vista, estiloAnimacionInicio2]}>
+          <Button
+            onPress={handleClick}
+            mode="contained"
+            buttonColor='#023047'
+            style={[styles.boton]}
+            onPressIn={() => pressBtn2()}
+            onPressOut={() => soltarBtn2()}
+            disabled={!prueba}
+          >
+            <View>
+              <Text style={[styles.botonTexto]} variant='titleMedium'>confirmar</Text>
+            </View>
+          </Button>
+        </Animated.View>
+
+        <View style={[styles.vista, { alignItems: 'center', paddingLeft: 10 }]}>
+          <View style={[styles.vista, { alignItems: 'center', paddingRight: 20, justifyContent: 'center' }]}>
+            <Text style={{ marginBottom: 5, fontSize: 20, fontWeight: '500' }}>¿No recibiste el mensaje?</Text>
+            <Animated.View style={[estiloAnimacionInicio, { alignItems: 'center', justifyContent: 'center' }]}>
+              <Button
+                mode="contained"
+                buttonColor='#023047'
+                style={[styles.boton]}
+                onPressIn={pressBtn}
+                onPressOut={soltarBtn}
+                onPress={enviarDeNuevo}
+                disabled={disabledd}
+              >
+                <View style={styles.vistaTextoBoton}>
+                  <Text style={[styles.botonTexto]} variant='titleMedium'>Volver a enviar</Text>
+                </View>
+              </Button>
+            </Animated.View>
+          </View>
+          <View style={[styles.countdownView, { display: !prueba ? "none" : "flex" }]}>
+            <CountDownTimer
+              ref={refTimer}
+              timestamp={90}
+              timerCallback={timerCallbackFunc}
+              timerOnProgress={timerOnProgressFunc}
+              containerStyle={{
+                height: 50,
+                width: 120,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 10,
+                backgroundColor: '#FFF'
+              }}
+              textStyle={{
+                fontSize: 25,
+                color: '#023047',
+                fontWeight: '500',
+                letterSpacing: 0.25,
+              }}
+            />
+          </View>
+        </View>
+        <Snackbar
+          visible={mostrarSnackErroneo}
+        >
+          <Text style={{ fontSize: 16, color: 'white' }}>El código no coincide.</Text>
+        </Snackbar>
+        <Snackbar
+          visible={sinTiempo}
+        >
+          <Text style={{ fontSize: 16, color: 'white' }}>Se terminó el tiempo.</Text>
+        </Snackbar>
+      </ImageBackground>
     </View>
   )
 }
@@ -246,12 +231,24 @@ const CodigoSMS = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 20,
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   vista: {
-    width: '100%',
+    width: '90%',
     marginVertical: 10,
 
   },
@@ -269,20 +266,13 @@ const styles = StyleSheet.create({
   },
   boton: {
     marginVertical: 20,
-    borderWidth: 1,
-    width: '100%',
-    height: 'auto',
-    borderRadius: 15,
-    borderColor: '#013d16',
   },
   botonTexto: {
     height: 20,
-    marginVertical: 15,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     textTransform: 'uppercase',
-    paddingVertical: 5,
-    fontWeight: '500',
+    color: 'white'
   },
   input: {
     paddingHorizontal: 10,

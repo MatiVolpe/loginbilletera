@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Image} from 'react-native'
+import { StyleSheet, View, Image, ImageBackground } from 'react-native'
 import { Text } from 'react-native-paper';
 
 
@@ -7,15 +7,21 @@ const Finalizado = (navigation) => {
 
   return (
     <View style={styles.contenedor}>
-      <View style={styles.vistaTitulo}>
-        <Image
-          source={require('../logoLogin.png')}
-          style={styles.imagen}
-        />
-      </View>
-      <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Bienvenido a Cash Mutual ..</Text>
-      </View>
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
+        <View style={styles.vistaTitulo}>
+          <Image
+            source={require('../logoLogin.png')}
+            style={styles.imagen}
+          />
+        </View>
+        <View style={styles.vista}>
+          <Text style={styles.titulo} variant='titleLarge'>Bienvenido a Cash Mutual</Text>
+        </View>
+      </ImageBackground>
     </View>
   )
 }
@@ -23,14 +29,27 @@ const Finalizado = (navigation) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 20,
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   vistaTitulo: {
     width: '100%',
     height: '100%',
-    maxHeight: 250,
+    maxHeight: 200,
+    marginTop: 30,
   },
   vista: {
     width: '90%',
@@ -67,9 +86,9 @@ const styles = StyleSheet.create({
   },
   imagen: {
     width: '100%',
+    height: 100,
     resizeMode: 'contain',
-    flex: 1,
-    
+
   },
 }
 )

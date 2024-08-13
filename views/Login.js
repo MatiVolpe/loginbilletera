@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useState } from 'react'
-import { StyleSheet, View, Animated, Image, Alert, SectionList, Pressable } from 'react-native'
-import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper';
+import { StyleSheet, View, Animated, Image, Alert, ImageBackground, Pressable } from 'react-native'
+import { HelperText, Snackbar, Text, TextInput, Button } from 'react-native-paper';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { Button } from 'native-base';
 import { useFocusEffect } from '@react-navigation/native';
 
 
@@ -51,7 +50,6 @@ const Login = ({ navigation }) => {
       setSuccess('');
       setEncontrado('');
       setResetear('');
-      console.log('usuario: ', usuario, 'contraseña: ', contraseña, 'nroPersona: ', nroPersona, 'success: ', success, 'resetear: ', resetear, 'encontrado :', encontrado);
     }, [])
   );
 
@@ -224,154 +222,166 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.contenedor}>
-      <Spinner
-        visible={vistaSpinner}
-      />
-      <View style={styles.vistaTitulo}>
-        <Image
-          source={require('../logoLogin.png')}
-          style={styles.imagen}
-        />
-      </View>
-
-
-      <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Nombre de usuario</Text>
-        <TextInput
-          style={[styles.input, { fontSize: 18 }]}
-          placeholder='Nombre de usuario'
-          label={'Usuario'}
-          value={usuario}
-          onChangeText={(texto) => setUsuario(texto)}
-          onBlur={handleErrorUsuario}
-          mode='outlined'
-        />
-        <HelperText type="error" visible={errorUsuario}>
-          Este campo es obligatorio
-        </HelperText>
-      </View>
-
-      <View style={[styles.vista, {marginBottom: 0}]}>
-        <Text style={styles.texto} variant='titleLarge'>Contraseña</Text>
-        <TextInput
-          style={[styles.input, { fontSize: 18 }]}
-          placeholder='Contraseña'
-          label={'Contraseña'}
-          value={contraseña}
-          onChangeText={(texto) => setContraseña(texto)}
-          onBlur={handleErrorContra}
-          secureTextEntry={mostrarContraseña}
-          right={
-            <TextInput.Icon
-              icon="eye"
-              onPress={() => handleInputChange()}
-              iconSize={24}
-            />
-          }
-          mode='outlined'
-        >
-        </TextInput>
-        <Pressable
-          onPress={handleContraOlvidada}
-          style={{marginVertical: 10}}
-        >
-          <Text style={[styles.texto, { fontSize: 15, color: '#2f246e', textAlign:'right' }]} variant='titleMedium'>¿Olvidaste tu contraseña?</Text>
-        </Pressable>
-        <HelperText type="error" visible={errorContra}>
-          Este campo es obligatorio
-        </HelperText>
-      </View>
-      <View style={styles.vista}>
-        <Animated.View style={estiloAnimacionInicio}>
-          <Button
-            variant="subtle"
-            size="sm"
-            style={[styles.boton, {marginTop: 0}]}
-            bg="#72ad8c"
-            onPressIn={() => pressBtn()}
-            onPressOut={() => soltarBtn()}
-            onPress={() => handleInicio()}
-          >
-            <Text style={styles.botonTexto} variant='labelMedium'>
-              Ingresar
-            </Text>
-          </Button>
-        </Animated.View>
-      </View>
-
-      <View style={styles.vista}>
-        <Text style={[styles.texto, { fontSize: 18 }]} variant='titleMedium'>¿No estás registrado?</Text>
-        <Animated.View style={estiloAnimacionRegistro}>
-          <Button
-            variant="subtle"
-            size="sm"
-            style={styles.boton}
-            bg="#72ad8c"
-            onPressIn={() => pressBtnReg()}
-            onPressOut={() => soltarBtnReg()}
-            onPress={() => handleRegistro()}
-          >
-            <View style={styles.vistaTextoBoton}>
-              <Text style={styles.botonTexto} variant='labelMedium'>
-                Registrarse
-              </Text>
-            </View>
-          </Button>
-        </Animated.View>
-      </View>
-      <Snackbar
-        visible={mostrarSnack}
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
       >
-        <Text style={{fontSize: 16, color:'white'}}>No puede haber campos vacios.</Text>
-      </Snackbar>
+        <Spinner visible={vistaSpinner} />
+        <View style={styles.overlay}>
+          <View style={styles.vistaTitulo}>
+            <Image source={require('../logoLogin.png')} style={styles.imagen} />
+          </View>
+          <Text style={[styles.texto, { color: '#023047' }]} variant='headlineSmall'>Iniciar Sesión</Text>
+
+          <View style={styles.vista}>
+            <TextInput
+              style={[styles.input, { fontSize: 18 }]}
+              placeholder='Nombre de usuario'
+              label={'Usuario'}
+              outlineColor='#219EBC'
+              activeOutlineColor='#023047'
+              value={usuario}
+              onChangeText={(texto) => setUsuario(texto)}
+              onBlur={handleErrorUsuario}
+              mode='outlined'
+            />
+            <HelperText type="error" visible={errorUsuario}>
+              Este campo es obligatorio
+            </HelperText>
+          </View>
+
+          <View style={[styles.vista, { marginBottom: 0 }]}>
+            <TextInput
+              style={[styles.input, { fontSize: 18 }]}
+              placeholder='Contraseña'
+              label='Contraseña'
+              outlineColor='#219EBC'
+              activeOutlineColor='#023047'
+              value={contraseña}
+              onChangeText={(texto) => setContraseña(texto)}
+              onBlur={handleErrorContra}
+              secureTextEntry={mostrarContraseña}
+              right={ mostrarContraseña ?
+                <TextInput.Icon
+                  icon="eye"
+                  onPress={() => handleInputChange()}
+                  iconSize={24}
+                /> :
+                <TextInput.Icon
+                  icon="eye-off"
+                  onPress={() => handleInputChange()}
+                  iconSize={24}
+                />
+              }
+              mode='outlined'
+            />
+            <HelperText type="error" visible={errorContra}>
+              Este campo es obligatorio
+            </HelperText>
+            <Pressable onPress={handleContraOlvidada} style={{ marginVertical: 10 }}>
+              <Text
+                style={[styles.texto, { fontSize: 15, color: '#2f246e', textAlign: 'right' }]}
+                variant='titleMedium'
+              >
+                ¿Olvidaste tu contraseña?
+              </Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.vista}>
+            <Animated.View style={estiloAnimacionInicio}>
+              <Button
+                mode="contained"
+                buttonColor='#023047'
+                style={[styles.boton, { marginTop: 0 }]}
+                onPressIn={() => pressBtn()}
+                onPressOut={() => soltarBtn()}
+                onPress={() => handleInicio()}
+              >
+                <View style={styles.vistaTextoBoton}>
+                  <Text style={styles.botonTexto} variant='titleMedium'>
+                    Ingresar
+                  </Text>
+                </View>
+              </Button>
+            </Animated.View>
+          </View>
+
+          <View style={styles.vista}>
+            <Text style={[styles.texto, { fontSize: 18, color: '#023047' }]} variant='titleMedium'>¿No estás registrado?</Text>
+            <Animated.View style={estiloAnimacionRegistro}>
+              <Button
+                mode="contained"
+                buttonColor='#023047'
+                style={styles.boton}
+                onPressIn={() => pressBtnReg()}
+                onPressOut={() => soltarBtnReg()}
+                onPress={() => handleRegistro()}
+              >
+                <View style={styles.vistaTextoBoton}>
+                  <Text style={styles.botonTexto} variant='titleMedium'>
+                    Registrarse
+                  </Text>
+                </View>
+              </Button>
+            </Animated.View>
+          </View>
+          <Snackbar visible={mostrarSnack}>
+            <Text style={{ fontSize: 16, color: 'white' }}>No puede haber campos vacios.</Text>
+          </Snackbar>
+        </View>
+      </ImageBackground>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 20,
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   vistaTitulo: {
     width: '100%',
-    height: '100%',
-    maxHeight: 250,
+    height: 'auto',
+    marginBottom: 30,
   },
   vista: {
-    width: '90%',
-  },
-  vistaOlvidada: {
-    paddingVertical: 40,
-  },
-  vistaTextoBoton: {
     width: '100%',
+    marginBottom: 20,
   },
   titulo: {
     marginVertical: 40,
     fontWeight: '700',
     textAlign: 'center'
-
   },
   texto: {
     fontWeight: '500',
   },
   boton: {
     marginVertical: 20,
-    borderWidth: 1,
     width: '100%',
-    borderRadius: 15,
-    borderColor: '#013d16',
   },
   botonTexto: {
     height: 20,
-    marginVertical: 15,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     textTransform: 'uppercase',
-    paddingVertical: 5,
+    color: 'white'
   },
   input: {
     paddingHorizontal: 10,
@@ -380,11 +390,10 @@ const styles = StyleSheet.create({
   },
   imagen: {
     width: '100%',
+    height: 150,
     resizeMode: 'contain',
-    flex: 1,
   },
-}
-)
+});
 
 
 export default Login

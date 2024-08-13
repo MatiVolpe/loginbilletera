@@ -1,11 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View, Animated, Alert } from 'react-native'
-import { HelperText, Snackbar, Text, TextInput, Icon } from 'react-native-paper';
+import { StyleSheet, View, Animated, Alert, ImageBackground } from 'react-native'
+import { HelperText, Snackbar, Text, TextInput, Button } from 'react-native-paper';
 import axios from 'axios';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { Button } from 'native-base';
 
 const CambiarContrasena = ({ navigation, route }) => {
 
@@ -17,7 +15,6 @@ const CambiarContrasena = ({ navigation, route }) => {
   const [errorContraRepetir, setErrorContraRepetir] = useState(false);
   const [mostrarSnack, setMostrarSnack] = useState(false);
   const [mostrarSnackDistinto, setMostrarSnackDistinto] = useState(false);
-  const [mostrarSnackError, setMostrarSnackError] = useState(false);
   const [urlTraductor, setUrlTraductor] = useState('');
   const [errorLongitud, setErrorLongitud] = useState(false);         //Debe contener al menos 8 caracteres
   const [errorEspeciales, setErrorEspeciales] = useState(false);     //No contener caracteres especiales
@@ -90,7 +87,6 @@ const CambiarContrasena = ({ navigation, route }) => {
         navigation.navigate('Finalizado');
       }
       else {
-        snackHandlerError();
         setContraseña("");
         setContraseñaRepetir("");
         spinnerStop();
@@ -132,21 +128,14 @@ const CambiarContrasena = ({ navigation, route }) => {
     setMostrarSnack(true);
     setTimeout(() => {
       setMostrarSnack(false);
-    }, 2000);
+    }, 4000);
   };
 
   const snackHandlerDistinto = () => {
     setMostrarSnackDistinto(true);
     setTimeout(() => {
       setMostrarSnackDistinto(false);
-    }, 2000);
-  };
-
-  const snackHandlerError = () => {
-    setMostrarSnackError(true);
-    setTimeout(() => {
-      setMostrarSnackError(false);
-    }, 5000);
+    }, 4000);
   };
 
 
@@ -185,122 +174,122 @@ const CambiarContrasena = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.contenedor}>
+    <View style={styles.contenedor}>
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
+        <Spinner
+          visible={vistaSpinner}
+        />
 
-      <Spinner
-        visible={vistaSpinner}
-      />
+        <View style={styles.vistaAclaracion}>
+          <Text style={[styles.textoAclaracionTitulo, { textAlign: 'center', textDecorationLine: 'underline' }]} variant='headlineSmall'>Elija su nueva clave </Text>
+        </View>
 
-      <View style={styles.vistaAclaracion}>
-        <Text style={[styles.textoAclaracionTitulo, {textAlign: 'center', textDecorationLine: 'underline'}]} variant='headlineSmall'>Elija su nueva clave </Text>
-        <Text style={styles.textoAclaracionTitulo} variant='titleLarge'>Recuerde que la clave debe cumplir con los siguientes requisitos: </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- Debe contener al menos 8 caracteres </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- No contener caracteres especiales </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- Contener Mayúsculas y Minúsculas </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- Contener Letras y Números </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- Sin caracteres repetidos </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- Sin números repetidos </Text>
-        <Text style={styles.textoAclaracion} variant='titleMedium'>- No repetir últimas 3 claves </Text>
-      </View>
+        <View style={styles.vista}>
+          <TextInput
+            style={[styles.input, { fontSize: 18 }]}
+            placeholder='1234'
+            label={'Nueva contraseña'}
+            value={contraseña}
+            onChangeText={(texto) => setContraseña(texto)}
+            onBlur={handleErrorContra}
+            secureTextEntry={mostrarContraseña2}
+            right={ mostrarContraseña2 ?
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => handleInputChange2()}
+                iconSize={24}
+              /> : 
+              <TextInput.Icon
+                icon="eye-off"
+                onPress={() => handleInputChange2()}
+                iconSize={24}
+              />
+            }
+            mode='outlined'
 
-      <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Nueva contraseña</Text>
-        <TextInput
-          style={[styles.input, {fontSize: 18}]}
-          placeholder='1234'
-          label={'Nueva contraseña'}
-          value={contraseña}
-          onChangeText={(texto) => setContraseña(texto)}
-          onBlur={handleErrorContra}
-          secureTextEntry={mostrarContraseña2}
-          right={
-            <TextInput.Icon
-              icon="eye"
-              onPress={() => handleInputChange2()}
-              iconSize={24}
-            />
-          }
-          mode='outlined'
-
-        >
-        </TextInput>
-        <HelperText type="error" visible={errorContra}>
-          Este campo es obligatorio
-        </HelperText>
-      </View>
-
-      <View style={styles.vistaAclaracion}>
-        <Text style={styles.texto} variant='titleLarge'>Repetir nueva contraseña</Text>
-        <TextInput
-          style={[styles.input, {fontSize: 18}]}
-          placeholder='1234'
-          label={'Repetir contraseña'}
-          value={contraseñaRepetir}
-          onChangeText={(texto) => setContraseñaRepetir(texto)}
-          onBlur={handleErrorContraRepetir}
-          secureTextEntry={mostrarContraseña}
-          right={
-            <TextInput.Icon
-              icon="eye"
-              onPress={() => handleInputChange()}
-              iconSize={24}
-            />
-          }
-          mode='outlined'
-
-        >
-        </TextInput>
-        <HelperText type="error" visible={errorContraRepetir}>
-          Este campo es obligatorio
-        </HelperText>
-      </View>
-
-      <View style={styles.vistaAclaracion}>
-        <Animated.View style={estiloAnimacionInicio}>
-          <Button
-            variant="subtle"
-            size="sm"
-            style={styles.boton}
-            bg="#72ad8c"
-            onPressIn={() => pressBtn()}
-            onPressOut={() => soltarBtn()}
-            onPress={() => handleInicio()}
           >
-            <Text style={styles.botonTexto} variant='labelMedium'>
-              Cambiar contraseña
-            </Text>
-          </Button>
-        </Animated.View>
-      </View>
+          </TextInput>
+          <HelperText type="error" visible={errorContra}>
+            Este campo es obligatorio
+          </HelperText>
+        </View>
+
+        <View style={styles.vistaAclaracion}>
+          <TextInput
+            style={[styles.input, { fontSize: 18 }]}
+            placeholder='1234'
+            label={'Repetir contraseña'}
+            outlineColor='#219EBC'
+            activeOutlineColor='#023047'
+            value={contraseñaRepetir}
+            onChangeText={(texto) => setContraseñaRepetir(texto)}
+            onBlur={handleErrorContraRepetir}
+            secureTextEntry={mostrarContraseña}
+            right={mostrarContraseña ?
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => handleInputChange()}
+                iconSize={24}
+              /> :
+              <TextInput.Icon
+                icon="eye-off"
+                onPress={() => handleInputChange()}
+                iconSize={24}
+              />
+            }
+            mode='outlined'
+
+          >
+          </TextInput>
+          <HelperText type="error" visible={errorContraRepetir}>
+            Este campo es obligatorio
+          </HelperText>
+        </View>
+
+        <Text style={styles.textoAclaracionTitulo} variant='titleLarge'>Recuerde que la clave debe cumplir con los siguientes requisitos: </Text>
+        <Text style={errorLongitud ? styles.textoAclaracion : styles.textoAclaracionError} variant='titleMedium'>- Debe contener al menos 8 caracteres </Text>
+        {errorEspeciales ? <Text style={styles.textoAclaracion} variant='titleMedium'>- No contener caracteres especiales </Text> : <Text style={styles.textoError} variant='titleMedium'>- No contener caracteres especiales </Text>}
+        {errorMayusculas ? <Text style={styles.textoAclaracion} variant='titleMedium'>- Contener Mayúsculas y Minúsculas </Text> : <Text style={styles.textoError} variant='titleMedium'>- Contener Mayúsculas y Minúsculas </Text>}
+        {errorNumeros ? <Text style={styles.textoAclaracion} variant='titleMedium'>- Contener Letras y Números </Text> : <Text style={styles.textoError} variant='titleMedium'>- Contener Letras y Números </Text>}
+        {errorRepetidos ? <Text style={styles.textoAclaracion} variant='titleMedium'>- Sin caracteres repetidos </Text> : <Text style={styles.textoError} variant='titleMedium'>- Sin caracteres repetidos </Text>}
+        {errorCorrelativos ? <Text style={styles.textoAclaracion} variant='titleMedium'>- Sin números repetidos </Text> : <Text style={styles.textoError} variant='titleMedium'>- Sin números repetidos </Text>}
+        {errorPassRepetida ? <Text style={styles.textoAclaracion} variant='titleMedium'>- No repetir últimas 3 claves </Text> : <Text style={styles.textoError} variant='titleMedium'>- No repetir últimas 3 claves </Text>}
+
+        <View style={styles.vistaAclaracion}>
+          <Animated.View style={estiloAnimacionInicio}>
+            <Button
+              mode="contained"
+              buttonColor='#023047'
+              style={styles.boton}
+              onPressIn={() => pressBtn()}
+              onPressOut={() => soltarBtn()}
+              onPress={() => handleInicio()}
+            >
+              <Text style={styles.botonTexto} variant='titleMedium'>
+                Cambiar contraseña
+              </Text>
+            </Button>
+          </Animated.View>
+        </View>
 
 
-      <Snackbar
-        visible={mostrarSnack}
-        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
-      >
-        <Text style={styles.textoSnack}>No puede haber campos vacios.</Text>
-      </Snackbar>
-      <Snackbar
-        visible={mostrarSnackDistinto}
-        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
-      >
-        <Text style={styles.textoSnack}>Las contraseñas no coinciden.</Text>
-      </Snackbar>
-      <Snackbar
-        visible={mostrarSnackError}
-        style={{zIndex: 999, bottom: 120, marginLeft: 35}}
-      >
-        <Text style={styles.textoSnack}>No se cumplen todas las condiciones para la contraseña:</Text>
-        {errorLongitud && <Text style={styles.textoSnack}>- Muy corta</Text>}
-        {errorEspeciales && <Text style={styles.textoSnack}>-No usar caracteres especiales</Text>}
-        {errorMayusculas && <Text style={styles.textoSnack}>-Debe tener minúsculas y mayúsculas</Text>}
-        {errorNumeros && <Text style={styles.textoSnack}>-Debe tener letras y números</Text>}
-        {errorRepetidos && <Text style={styles.textoSnack}>-No usar caracteres repetidos</Text>}
-        {errorCorrelativos && <Text style={styles.textoSnack}>-No repetir números</Text>}
-        {errorPassRepetida && <Text style={styles.textoSnack}>-No repetir las últimas 3 claves</Text>}
+        <Snackbar
+          visible={mostrarSnack}
+        >
+          <Text style={styles.textoSnack}>No puede haber campos vacios.</Text>
+        </Snackbar>
+        <Snackbar
+          visible={mostrarSnackDistinto}
+        >
+          <Text style={styles.textoSnack}>Las contraseñas no coinciden.</Text>
+        </Snackbar>
 
-      </Snackbar>
-    </SafeAreaView>
+      </ImageBackground>
+    </View>
   )
 }
 
@@ -308,9 +297,21 @@ const CambiarContrasena = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
-    padding: 20,
-    paddingLeft: 30,
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   textoSnack: {
     color: 'white',
@@ -323,16 +324,13 @@ const styles = StyleSheet.create({
   },
   vista: {
     width: '90%',
-    marginBottom: 10,
-    marginVertical: 0,
   },
   vistaAclaracion: {
     width: '90%',
     marginBottom: 10,
   },
   titulo: {
-    marginVertical: 40,
-    fontWeight: '700',
+    fontWeight: '600',
     textAlign: 'center'
 
   },
@@ -340,35 +338,36 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   textoAclaracionTitulo: {
-    fontWeight: '700',
-    color: '#545454',
+    fontWeight: '600',
+    color: '#023047',
+    textAlign: 'center'
   },
   textoAclaracion: {
-    fontWeight: '700',
-    color: '#545454',
+    fontWeight: '500',
+    color: '#green',
+    fontStyle: 'italic'
+  },
+  textoError: {
+    fontWeight: '500',
+    color: 'red',
     fontStyle: 'italic'
   },
   textoAclaracionError: {
-    fontWeight: '700',
+    fontWeight: '500',
     color: '#b02033',
     fontStyle: 'italic'
   },
   boton: {
     marginVertical: 20,
-    borderWidth: 1,
     width: '100%',
-    borderRadius: 15,
-    borderColor: '#013d16',
-    height: 60
+    height: 40,
   },
   botonTexto: {
     height: 20,
-    marginVertical: 15,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     textTransform: 'uppercase',
-    paddingVertical: 5,
-    height: 20,
+    color: 'white'
   },
   input: {
     paddingHorizontal: 10,

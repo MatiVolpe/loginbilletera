@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Animated, Pressable, StyleSheet, View } from 'react-native'
-import { Text } from 'react-native-paper'
+import { Animated, ImageBackground, Pressable, StyleSheet, View } from 'react-native'
+import { Text, Button } from 'react-native-paper'
 import axios from 'axios'
-import { Button } from 'native-base';
 
 
 const EmailTemporal = ({ navigation, route }) => {
@@ -87,50 +86,55 @@ const EmailTemporal = ({ navigation, route }) => {
 
   return (
     <View style={styles.contenedor}>
-      <View>
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
         <View>
-          <Text variant='headlineMedium' style={styles.titulo}>Usuario confirmado!</Text>
+          <View>
+            <Text variant='headlineMedium' style={styles.titulo}>Usuario confirmado!</Text>
+          </View>
+          <View>
+            <Text variant='headlineSmall' style={styles.titulo}>Tu nombre de usuario es:</Text>
+          </View>
+          <View>
+            <Text variant='headlineMedium' style={[styles.texto, { color: '#023047' }]}>{usuario}</Text>
+          </View>
+          <Text variant='headlineSmall' style={styles.titulo}>Te enviamos tu clave provisoria para iniciar sesion a tu correo</Text>
         </View>
-        <View>
-          <Text variant='headlineSmall' style={styles.texto}>Tu nombre de usuario es:</Text>
-        </View>
-        <View>
-          <Text variant='headlineSmall' style={[styles.titulo, style = { color: '#663399' }]}>{usuario}</Text>
-        </View>
-        <Text variant='headlineSmall' style={styles.texto}>Te enviamos tu clave provisoria para iniciar sesion a tu correo</Text>
-      </View>
 
-      <Animated.View style={[styles.vista, estiloAnimacionInicio]}>
-        <Button
-          onPress={handleInicio}
-          onPressIn={pressBtn}
-          onPressOut={soltarBtn}
-          variant="subtle"
-          size="sm"
-          style={[styles.boton, {height: 60}]}
-          bg="#72ad8c"
-
-        >
-          <Text style={[styles.botonTexto, {height: 30}]}>ir a Iniciar Sesión</Text>
-        </Button>
-      </Animated.View>
-
-
-      <View style={{ alignContent: 'center', marginTop: 20 }}>
-        <Text style={{fontSize: 20}}>¿No recibiste el correo?</Text>
-
-        <Animated.View style={estiloAnimacionInicio2}>
-          <Pressable 
-            style={{borderWidth: 1, borderRadius: 10, padding: 5, margin: 5, backgroundColor: '#FFF'}}
-            onPress={enviarDeNuevo}
-            onPressIn={pressBtn2}
-            onPressOut={soltarBtn2}
+        <Animated.View style={[styles.vista, estiloAnimacionInicio]}>
+          <Button
+            mode="contained"
+            buttonColor='#023047'
+            style={[styles.boton]}
+            onPress={handleInicio}
+            onPressIn={pressBtn}
+            onPressOut={soltarBtn}
           >
-            <Text style={{ color: 'blue100', textAlign:'center', fontSize: 20 }}>Volver a enviar</Text>
-          </Pressable>
+            <Text style={[styles.botonTexto]} variant='headlineSmall'>ir a Iniciar Sesión</Text>
+          </Button>
         </Animated.View>
-      </View>
 
+
+        <View style={{ alignContent: 'center', marginBottom: 20 }}>
+          <Text style={{ fontSize: 20 }}>¿No recibiste el correo?</Text>
+
+          <Animated.View style={estiloAnimacionInicio2}>
+            <Button
+              mode="contained"
+              buttonColor='#023047'
+              style={[styles.boton, {marginTop: 10, borderRadius: 15}]}
+              onPress={enviarDeNuevo}
+              onPressIn={pressBtn2}
+              onPressOut={soltarBtn2}
+            >
+              <Text style={[styles.botonTexto, { fontSize: 16 }]} variant='labelMedium'>Volver a enviar</Text>
+            </Button>
+          </Animated.View>
+        </View>
+      </ImageBackground>
     </View>
   )
 }
@@ -138,38 +142,43 @@ const EmailTemporal = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 20,
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   vista: {
-    width: '100%',
-
+    width: '90%',
   },
   titulo: {
-    marginVertical: 40,
-    fontWeight: '700',
+    marginVertical: 25,
+    fontWeight: '400',
     textAlign: 'center',
 
   },
   texto: {
     fontWeight: '700',
-  },
-  boton: {
-    marginVertical: 20,
-    borderWidth: 1,
-    width: '100%',
-    borderRadius: 15,
-    borderColor: '#013d16',
+    textAlign: 'center',
   },
   botonTexto: {
     height: 20,
-    marginVertical: 15,
+    marginVertical: 10,
     fontSize: 20,
     textAlign: 'center',
     textTransform: 'uppercase',
     paddingVertical: 5,
-    fontWeight: '600',
+    color: 'white'
   },
 
 })

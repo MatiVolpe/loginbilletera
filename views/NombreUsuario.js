@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState, useRef } from 'react'
-import { Animated, StyleSheet, View } from 'react-native'
-import { HelperText, Snackbar, Text, TextInput } from 'react-native-paper'
+import { Animated, ImageBackground, StyleSheet, View } from 'react-native'
+import { HelperText, Snackbar, Text, TextInput, Button } from 'react-native-paper'
 import Spinner from 'react-native-loading-spinner-overlay';
 import axios from 'axios';
 import DeviceInfo from 'react-native-device-info';
-import { Button } from 'native-base';
 
 const NombreUsuario = ({ navigation }) => {
 
@@ -27,7 +26,7 @@ const NombreUsuario = ({ navigation }) => {
     const [claveTemporal, setClaveTemporal] = useState('');
     const [idTelefono, setIdTelefono] = useState('');
     const [llamado, setLlamado] = useState(false);
-    
+
 
 
 
@@ -188,7 +187,7 @@ const NombreUsuario = ({ navigation }) => {
         setMostrarSnackLongitud(true);
         setTimeout(() => {
             setMostrarSnackLongitud(false);
-        }, 2000);
+        }, 3000);
     };
 
     const snackHandlerExistente = () => {
@@ -212,56 +211,62 @@ const NombreUsuario = ({ navigation }) => {
             <Spinner
                 visible={vistaSpinner}
             />
-            <View>
-                <Text variant='headlineMedium' style={styles.titulo}>Hola {nombre}!</Text>
+            <ImageBackground
+                source={require('../background.jpg')}
+                style={styles.backgroundImage}
+                resizeMode='cover'
+            >
                 <View>
-                    <Text variant='headlineSmall' style={styles.texto}>Elegí un nombre de usuario:</Text>
+                    <Text variant='headlineMedium' style={styles.titulo}>Hola {nombre}!</Text>
+                    <View>
+                        <Text variant='headlineSmall' style={styles.texto}>Elegí un nombre de usuario:</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.vista}>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Ej. nombre'
-                    label={'Usuario'}
-                    value={usuario}
-                    onChangeText={(texto) => setUsuario(texto.trim())}
-                    // onBlur={handleErrorDocumento}
-                    mode='outlined'
-                />
-                <View style={[styles.vista, { flexDirection: 'row', alignItems: 'center' }]}>
-                    <Text style={{ marginVertical: 5 }}>Debe tener más de 8 caracteres</Text>
-                </View>
-                <HelperText type="error" visible={false}>
-                    Este campo es obligatorio
-                </HelperText>
+                <View style={styles.vista}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Ej. nombre'
+                        label='Usuario'
+                        value={usuario}
+                        outlineColor='#219EBC'
+                        activeOutlineColor='#023047'
+                        onChangeText={(texto) => setUsuario(texto.trim())}
+                        mode='outlined'
+                    />
+                    <View style={[styles.vista, { flexDirection: 'row', alignItems: 'center' }]}>
+                        <Text style={{ marginVertical: 15, fontSize: 16 }}>Debe tener más de 8 caracteres</Text>
+                    </View>
+                    <HelperText type="error" visible={false}>
+                        Este campo es obligatorio
+                    </HelperText>
 
-            </View>
-            <Animated.View style={[styles.vista, estiloAnimacionInicio]}>
-                <Button
-                    onPress={handleSiguiente}
-                    onPressIn={pressBtn}
-                    onPressOut={soltarBtn}
-                    variant="subtle"
-                    size="sm"
-                    style={styles.boton}
-                    bg="#72ad8c"
+                </View>
+                <Animated.View style={[styles.vista, estiloAnimacionInicio]}>
+                    <Button
+                        onPress={handleSiguiente}
+                        onPressIn={pressBtn}
+                        onPressOut={soltarBtn}
+                        mode="contained"
+                        buttonColor='#023047'
+                        style={styles.boton}
+                    >
+                        <Text style={styles.botonTexto} variant='titleMedium'>Siguiente</Text>
+                    </Button>
+                </Animated.View>
+
+                <Snackbar
+                    visible={mostrarSnackLongitud}
+                    style={{ zIndex: 999, bottom: 120, marginLeft: 35 }}
                 >
-                    <Text style={styles.botonTexto}>Siguiente</Text>
-                </Button>
-            </Animated.View>
-
-            <Snackbar
-                visible={mostrarSnackLongitud}
-                style={{zIndex: 999, bottom: 120, marginLeft: 35}}
-            >
-                <Text style={{fontSize: 16, color: 'white'}}>El nombre de usuario debe tener al menos 8 caracteres.</Text>
-            </Snackbar>
-            <Snackbar
-                visible={mostrarSnackExistente}
-                style={{zIndex: 999, bottom: 120, marginLeft: 35}}
-            >
-                El nombre de usuario ya existe.
-            </Snackbar>
+                    <Text style={{ fontSize: 16, color: 'white' }}>El nombre de usuario debe tener al menos 8 caracteres.</Text>
+                </Snackbar>
+                <Snackbar
+                    visible={mostrarSnackExistente}
+                    style={{ zIndex: 999, bottom: 120, marginLeft: 35 }}
+                >
+                    <Text style={{ fontSize: 16, color: 'white' }}>El nombre de usuario ya existe.</Text>
+                </Snackbar>
+            </ImageBackground>
         </View>
     )
 }
@@ -269,13 +274,24 @@ const NombreUsuario = ({ navigation }) => {
 const styles = StyleSheet.create({
     contenedor: {
         flex: 1,
-        backgroundColor: '#e8e8d8',
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
-        padding: 20,
+    },
+    overlay: {
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 50,
     },
     vista: {
-        width: '100%',
-
+        width: '90%',
     },
     titulo: {
         marginVertical: 40,
@@ -288,26 +304,21 @@ const styles = StyleSheet.create({
     },
     boton: {
         marginVertical: 20,
-        borderWidth: 1,
         width: '100%',
-        borderRadius: 15,
-        borderColor: '#013d16',
-        height: 60
-      },
-      botonTexto: {
-        height: 30,
-        marginVertical: 15,
-        fontSize: 20,
+        height: 40,
+    },
+    botonTexto: {
+        height: 20,
+        fontSize: 18,
         textAlign: 'center',
         textTransform: 'uppercase',
-        paddingVertical: 5,
-        fontWeight: '500',
-      },
+        color: 'white'
+    },
     input: {
         paddingHorizontal: 10,
         marginTop: 10,
         borderRadius: 20,
-        textAlign: 'center',
+        textAlign: 'left',
         fontSize: 20,
     },
     countdownView: {

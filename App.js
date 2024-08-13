@@ -87,82 +87,110 @@ const App = () => {
             />
             <Stack.Screen
               name="Documento"
-              component={withFooter(Documento)}
+              component={Documento}
               options={{
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerBackTitle: 'Volver',
                 headerTitle: '',
                 headerBackTitleStyle: {
                   fontSize: 20,
-                  color: '#013d16',
+                  color: 'white',
                 },
-                headerTintColor: '#013d16'
+                headerTintColor: 'white'
               }}
             />
             <Stack.Screen
               name="CodigoSMS"
-              component={withFooter(CodigoSMS)}
+              component={CodigoSMS}
               options={{
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerBackTitle: 'Atrás',
                 headerTitle: '',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   fontSize: 24
-                }
+                },
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white'
               }}
             />
             <Stack.Screen
               name="NombreUsuario"
-              component={withFooter(NombreUsuario)}
+              component={NombreUsuario}
               options={{
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerBackTitle: 'Atrás',
                 headerTitle: '',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   fontSize: 24
-                }
+                },
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white'
               }}
             />
             <Stack.Screen
               name="EmailTemporal"
-              component={withFooter(EmailTemporal)}
+              component={EmailTemporal}
               options={{
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerBackTitle: 'Atrás',
                 headerTitle: '',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   fontSize: 24
-                }
+                },
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white'
               }}
             />
             <Stack.Screen
               name="CambiarContrasena"
-              component={withFooter(CambiarContrasena)}
+              component={CambiarContrasena}
               options={{
-                headerShown: false,
+                headerStyle: {
+                  backgroundColor: '#023047'
+                },
+                headerTitle: '',
                 headerBackTitleVisible: false,
-                headerLeft: null
+                headerLeft: null,
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white'
               }}
             />
             <Stack.Screen
               name="Finalizado"
-              component={withFooter(Finalizado)}
+              component={Finalizado}
               options={({ navigation }) => ({
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerTitle: '',
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white',
                 headerBackTitleVisible: false,
                 headerLeft: null,
                 headerRight: () => <Button style={{ borderRadius: 10, marginRight: 10 }} buttonColor='#72ad8c' title="Cerrar Sesión" onPress={() => navigation.navigate('Login')}><Text>Cerrar Sesión</Text></Button>
@@ -170,10 +198,10 @@ const App = () => {
             />
             <Stack.Screen
               name="Olvidada"
-              component={withFooter(Olvidada)}
+              component={Olvidada}
               options={{
                 headerStyle: {
-                  backgroundColor: '#e8e8d8'
+                  backgroundColor: '#023047'
                 },
                 headerBackTitle: 'Volver',
                 headerTitle: '',
@@ -181,7 +209,12 @@ const App = () => {
                   fontSize: 20,
                   color: '#013d16',
                 },
-                headerTintColor: '#013d16'
+                headerTintColor: '#013d16',
+                headerBackTitleStyle: {
+                  fontSize: 20,
+                  color: 'white',
+                },
+                headerTintColor: 'white'
               }}
             />
           </Stack.Navigator>

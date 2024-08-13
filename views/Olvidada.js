@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
-import { HelperText, Text, TextInput, Snackbar } from 'react-native-paper';
+import { Animated, ImageBackground, StyleSheet, View } from 'react-native';
+import { HelperText, Text, TextInput, Snackbar, Button } from 'react-native-paper';
 import { Dropdown } from 'react-native-paper-dropdown';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { Button } from 'native-base';
 
 const Olvidada = ({ navigation }) => {
   const [documento, setDocumento] = useState('');
@@ -156,72 +155,78 @@ const Olvidada = ({ navigation }) => {
 
   return (
     <View style={styles.contenedor}>
-
-      <Spinner
-        visible={vistaSpinner}
-      />
-
-      <View>
-        <Text variant='headlineLarge' style={styles.titulo}>Reestablecer contraseña</Text>
-      </View>
-
-      <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Seleccione tipo de documento</Text>
-        <View style={styles.dropdown}>
-          <Dropdown
-            mode='outlined'
-            label="Tipo de documento"
-            placeholder="Elija documento o CUIT"
-            options={[
-              { label: 'DNI', value: "1" },
-              { label: 'CUIT', value: "2" }
-            ]}
-            value={tipoDoc}
-            onSelect={setTipoDoc}
-          />
-        </View>
-      </View>
-      <View style={styles.vista}>
-        <Text style={styles.texto} variant='titleLarge'>Ingrese su {tipoDoc === "1" ? "documento" : "CUIT"}</Text>
-        <TextInput
-          style={[styles.input, {fontSize: 18}]}
-          placeholder=' Ej: 123456789'
-          label={'Documento'}
-          value={documento}
-          onChangeText={(texto) => setDocumento(texto)}
-          onBlur={handleErrorDocumento}
-          mode='outlined'
+      <ImageBackground
+        source={require('../background.jpg')}
+        style={styles.backgroundImage}
+        resizeMode='cover'
+      >
+        <Spinner
+          visible={vistaSpinner}
         />
-        <HelperText type="error" visible={errorDocumento}>
-          Este campo es obligatorio
-        </HelperText>
-      </View>
 
+        <View>
+          <Text variant='headlineLarge' style={styles.titulo}>Reestablecer contraseña</Text>
+        </View>
 
-      <Animated.View style={estiloAnimacionInicio}>
-        <Button
-          variant="subtle"
-          size="sm"
-          style={styles.boton}
-          bg="#72ad8c"
-          onPressIn={() => pressBtn()}
-          onPressOut={() => soltarBtn()}
-          onPress={handleBotonSMS}
-        >
-          <View style={styles.vistaTextoBoton}>
-            <Text style={styles.botonTexto} variant='labelMedium'>
-              Enviar SMS
-            </Text>
+        <View style={styles.vista}>
+          <Text style={styles.texto} variant='titleLarge'>Seleccione tipo de documento</Text>
+          <View style={styles.dropdown}>
+            <Dropdown
+              mode='outlined'
+              label="Tipo de documento"
+              placeholder="Elija documento o CUIT"
+              options={[
+                { label: 'DNI', value: "1" },
+                { label: 'CUIT', value: "2" }
+              ]}
+              value={tipoDoc}
+              onSelect={setTipoDoc}
+            />
           </View>
-        </Button>
-      </Animated.View>
-      <View style={styles.vista}>
-        <Snackbar
+        </View>
+        <View style={styles.vista}>
+          <Text style={styles.texto} variant='titleLarge'>Ingrese su {tipoDoc === "1" ? "documento" : "CUIT"}</Text>
+          <TextInput
+            style={[styles.input, { fontSize: 18 }]}
+            placeholder=' Ej: 123456789'
+            label={'Documento'}
+            outlineColor='#219EBC'
+            activeOutlineColor='#023047'
+            value={documento}
+            onChangeText={(texto) => setDocumento(texto)}
+            onBlur={handleErrorDocumento}
+            mode='outlined'
+          />
+          <HelperText type="error" visible={errorDocumento}>
+            Este campo es obligatorio
+          </HelperText>
+        </View>
+
+
+        <Animated.View style={estiloAnimacionInicio}>
+          <Button
+            mode="contained"
+            buttonColor='#023047'
+            style={styles.boton}
+            onPressIn={() => pressBtn()}
+            onPressOut={() => soltarBtn()}
+            onPress={handleBotonSMS}
+          >
+            <View style={styles.vistaTextoBoton}>
+              <Text style={styles.botonTexto} variant='titleMedium'>
+                Enviar SMS
+              </Text>
+            </View>
+          </Button>
+        </Animated.View>
+        <View style={styles.vista}>
+          <Snackbar
             visible={mostrarSnack}
-        >
-          No puede haber campos vacios.
-        </Snackbar>
-      </View>
+          >
+            No puede haber campos vacios.
+          </Snackbar>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -229,22 +234,33 @@ const Olvidada = ({ navigation }) => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#e8e8d8',
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 20,
+  },
+  overlay: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   vista: {
     width: '90%',
   },
   vistaTextoBoton: {
     width: '100%',
-    paddingRight: 65,
-    
-  }, 
+  },
   titulo: {
     marginVertical: 40,
-    fontWeight: '700',
-    textAlign: 'center'
+    fontWeight: '600',
+    textAlign: 'center',
+    color: '#023047'
   },
   texto: {
     marginTop: 10,
@@ -252,18 +268,15 @@ const styles = StyleSheet.create({
   },
   boton: {
     marginVertical: 20,
-    borderWidth: 1,
     width: '100%',
-    borderRadius: 15,
-    borderColor: '#013d16',
+    height: 40,
   },
   botonTexto: {
     height: 20,
-    marginVertical: 15,
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     textTransform: 'uppercase',
-    paddingVertical: 5,
+    color: 'white'
   },
   input: {
     paddingHorizontal: 10,
